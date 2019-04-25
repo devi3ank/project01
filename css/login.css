@@ -1,0 +1,16 @@
+#app {
+    width: 100%;
+    height: 100vh;
+}
+
+#app > .container-login {
+    width: 25%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#app >  .container-login > .form-login {
+    padding: 25px;
+}

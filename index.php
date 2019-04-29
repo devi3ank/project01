@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,32 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>หจก. สืบ เกษตรไท</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Niramit" rel="stylesheet">
     <link rel="stylesheet" href="./css/custom.css">
     <link rel="stylesheet" href="./css/login.css">
 </head>
 <body>
-    
-    <div id="app">
-        <div class="container-login">
-            <div class="form-login">
-                <p class="title">หจก. สืบ เกษตรไท</p>
-                <form action="dashboard.html">
-                    <div class="form-group">
-                        ชื่อผู้ใช้งาน :
-                        <input type="text" class="form-control" placeholder="">
-                    </div>
-                    <div class="form-group">
-                        รหัสผ่าน :
-                        <input type="text" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary btn-block">เข้าสู่ระบบ</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+
+    <?php if (empty($_SESSION['loginStatus'])) { include './applications/login.php'; }?>
+    <?php if (!empty($_SESSION['loginStatus'])) { include './main/dashboard.php'; }?>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

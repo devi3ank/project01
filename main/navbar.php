@@ -9,7 +9,7 @@
         </ul>
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-user"></i> Mean Phonphatcharawat</a>
+                <a class="nav-link" href="#"><i class="fas fa-user"></i> <?php echo $_SESSION['user_fullname']?></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="?app=logout"><i class="fas fa-sign-out-alt"></i> ออกจากระบบ</a>

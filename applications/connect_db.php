@@ -13,6 +13,7 @@
 
 //================================================ CONFIG ============================================================
     $status = array('', 'ใช้งาน', 'ปิดการใช้งาน');
+    $statusLot = array('', 'ยังไม่ได้ขาย', 'ขายแล้ว');
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
     $domain = $protocol.$_SERVER['HTTP_HOST']."/project01";
 //============================================================================================================
@@ -46,6 +47,26 @@
             UPDATE $table SET $set WHERE $where
         ";
         $conn->query($sql);
+    }
+
+    function select_db($sql) {
+        Global $conn;
+        return $conn->query($sql);
+    } 
+
+    function alert_msg($msg) {
+        echo '
+            <div class="detail">
+                <p class="title">'.$msg.'</p>
+            </div>
+        ';
+    }
+
+    function dieArray($data) {
+        echo "<pre>";
+            print_r($data);
+        echo "</pre>";
+        die();
     }
 //============================================================================================================
 ?>

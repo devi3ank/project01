@@ -1,25 +1,21 @@
 <?php 
     $id = $_GET['id'];
 
-    $sql = "    
+    $resultStore = select_db("    
+        SELECT 
+            *
+        FROM store_tb
+        WHERE store_status = '1'
+    ");
+
+    $result = select_db("    
         SELECT 
             *
         FROM user_tb
         WHERE 
             user_id = '$id' AND
             user_status != '3'
-    ";
-
-    $sql_store = "    
-        SELECT 
-            *
-        FROM store_tb
-        WHERE store_status = '1'
-    ";
-
-    $resultStore = $conn->query($sql_store);
-
-    $result = $conn->query($sql);
+    ");
 ?>
 
 <div class="detail">
@@ -29,7 +25,7 @@
         $row = $result->fetch_assoc();
     ?>
     <p class="title">แก้ไขข้อมูลผู้ใช้งาน</p>
-    <form action="?app=user_update&id=<?=$id?>" method="POST">
+    <form action="?app=user&action=user_update&id=<?=$id?>" method="POST">
         <div class="form-group row">
             <label for="staticEmail" class="col-sm-2 col-form-label text-right">ชื่อ - นามสกุล : </label>
             <div class="col-sm-5">
@@ -98,7 +94,7 @@
         <div class="form-group row">
                 <label for="inputPassword" class="col-sm-2 col-form-label text-right"></label>
                 <div class="col-sm-5">
-                    <button type="submit" class="btn btn-secondary"><i class="far fa-save"></i> บันทึกข้อมูล</button>
+                    <button type="submit" class="btn btn-secondary btn-sm"><i class="far fa-save"></i> บันทึกข้อมูล</button>
                 </div>
             </div>
     </form>

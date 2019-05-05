@@ -6,11 +6,16 @@
         WHERE store_status = '1'
     ";
 
-    $result = $conn->query($sql);
+    $result = select_db("    
+        SELECT 
+            *
+        FROM store_tb
+        WHERE store_status = '1'
+    ");
 ?>
 <div class="detail">
     <p class="title">เพิ่มข้อมูลผู้ใช้งาน</p>
-    <form action="?app=user_insert" method="POST">
+    <form action="?app=user&action=user_insert" method="POST">
         <div class="form-group row">
             <label for="staticEmail" class="col-sm-2 col-form-label text-right">ชื่อ - นามสกุล : </label>
             <div class="col-sm-5">
@@ -79,7 +84,7 @@
         <div class="form-group row">
             <label for="inputPassword" class="col-sm-2 col-form-label text-right"></label>
             <div class="col-sm-5">
-                <button type="submit" class="btn btn-secondary"><i class="far fa-save"></i> บันทึกข้อมูล</button>
+                <button type="submit" class="btn btn-secondary btn-sm"><i class="far fa-save"></i> บันทึกข้อมูล</button>
             </div>
         </div>
     </form>

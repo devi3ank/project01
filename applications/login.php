@@ -5,7 +5,7 @@
             <form action="applications/check_login.php" method="POST">
                 <div class="form-group">
                     ชื่อผู้ใช้งาน :
-                    <input type="text" name="u_username" class="form-control" placeholder="">
+                    <input type="text" name="u_username" class="form-control" autocomplete="off">
                 </div>
                 <div class="form-group">
                     รหัสผ่าน :

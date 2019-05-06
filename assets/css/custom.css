@@ -19,9 +19,11 @@ body {
     top: 0;
     left: 0;
     background-color: #006600;
-    width: 300px;
-    min-height: 100vh;
+    width: 250px;
+    height: 100vh;
     padding: 56px 0 0;
+    overflow: scroll;
+    overflow-x: hidden;
 }
 
 .sidebar-list {
@@ -46,7 +48,7 @@ body {
 }
 
 .content {
-    padding: 56px 0 0 300px;
+    padding: 56px 0 0 250px;
 }
 
 .content > .detail {

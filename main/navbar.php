@@ -20,10 +20,7 @@
 
 <div class="sidebar">
     <ul class="sidebar-list">
-        <li class="<?php if($action == 'user_list' || $action == 'user_add' || $action == 'user_edit'){echo "active";}?>">
-            
-            <a href="?app=user&action=user_list"><i class="fas fa-angle-double-right"></i> จัดการข้อมูลผู้ใช้งาน</a>
-        </li>
+        
         <li>
             <a href="#" class="text-danger"><i class="fas fa-angle-double-right"></i> จัดการข้อมูลเว็ปไซต์</a>
         </li>
@@ -52,7 +49,13 @@
             <a href="#" class="text-danger"><i class="fas fa-angle-double-right"></i> ตรวจสอบข้อมูลการส่งสินค้า</a>
         </li>
         <li>
-            <a href="#" class="text-danger"><i class="fas fa-angle-double-right"></i> พิมพ์รายงาน</a>
+            <a href="?app=reports&action=report_list_buy"><i class="fas fa-angle-double-right"></i> พิมพ์รายงาน</a>
+        </li>
+        <li class="<?php if($action == 'store_list' || $action == 'store_add' || $action == 'store_edit'){echo "active";}?>">
+            <a href="?app=store&action=store_list"><i class="fas fa-angle-double-right"></i> จัดการร้านค้า</a>
+        </li>
+        <li class="<?php if($action == 'user_list' || $action == 'user_add' || $action == 'user_edit'){echo "active";}?>">
+            <a href="?app=user&action=user_list"><i class="fas fa-angle-double-right"></i> จัดการข้อมูลผู้ใช้งาน</a>
         </li>
     </ul>
 </div>

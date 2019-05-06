@@ -53,7 +53,9 @@
                 <td class="text-right"><?=number_format($row['lot_price_buy'],2)?></td>
                 <td class="text-right"><?=number_format($row['lot_weight']*$row['lot_price_buy'],2)?></td>
                 <td class="text-center">
+                    <?php if ($row['lot_status'] == 1) { ?>
                     <a href="?app=stock&action=manage_stock_sale&id=<?=$id?>&lot_id=<?=$row['lot_id']?>" class="btn btn-sm btn-secondary" title="ขายสินค้า"><i class="fas fa-hand-holding-usd"></i></a>
+                    <?php } ?>
                 </td>
             </tr>
         <?php $i++;}} else { ?>

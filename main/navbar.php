@@ -31,7 +31,7 @@
             <a href="?app=stock&action=manage_stock"><i class="fas fa-angle-double-right"></i> จัดการข้อมูลสินค้าในคลัง</a>
         </li>
         <li>
-            <a href="#" class="text-danger"><i class="fas fa-angle-double-right"></i> ตรวจสอบสินค้าในคลัง</a>
+            <a href="?app=datatransfer&action=stock"><i class="fas fa-angle-double-right"></i> ตรวจสอบสินค้าในคลัง</a>
         </li>
         <li>
             <a href="#" class="text-danger"><i class="fas fa-angle-double-right"></i> จัดการข้อมูลการเงิน</a>
@@ -46,7 +46,7 @@
             <a href="?app=datatransfer&action=sale"><i class="fas fa-angle-double-right"></i> ตรวจสอบข้อมูลการขายสินค้า</a>
         </li>
         <li>
-            <a href="#" class="text-danger"><i class="fas fa-angle-double-right"></i> ตรวจสอบข้อมูลการส่งสินค้า</a>
+            <a href="?app=datatransfer&action=transfer"><i class="fas fa-angle-double-right"></i> ตรวจสอบข้อมูลการส่งสินค้า</a>
         </li>
         <li>
             <a href="?app=reports&action=report_list_buy"><i class="fas fa-angle-double-right"></i> พิมพ์รายงาน</a>

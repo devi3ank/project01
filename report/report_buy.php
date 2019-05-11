@@ -148,9 +148,9 @@
     $html .= '
         <table style="width:100%; border-collapse: collapse;">
             <tr>
-                <th style="width:60%;">('.convert($data['lot_weight']*$data['lot_price_buy']).')</th>
-                <th style="width:20%;">ยอดรวมสุทธิ</th>
-                <th style="width:20%; text-align:right;">'.number_format($data['lot_weight']*$data['lot_price_buy'],2).'</th>
+                <th style="width:60%; border: 1px solid black;">('.convert($data['lot_weight']*$data['lot_price_buy']).')</th>
+                <th style="width:20%; border: 1px solid black;">ยอดรวมสุทธิ</th>
+                <th style="width:20%; border: 1px solid black; text-align:right;">'.number_format($data['lot_weight']*$data['lot_price_buy'],2).'</th>
             </tr>
         </table>
     ';

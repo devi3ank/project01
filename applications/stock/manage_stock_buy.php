@@ -33,7 +33,7 @@
         <div class="form-group row">
             <label for="inputPassword" class="col-sm-2 col-form-label text-right">ซื้อสินค้ากับ</label>
             <div class="col-sm-5">
-                <select name="store_but_id" id="" class="form-control" required>
+                <select name="store_buy_id" id="" class="form-control" required>
                     <option value="">-- เลือกลูกค้า --</option>
                     <?php
                         while($rowStore = $resultStore->fetch_assoc()) {

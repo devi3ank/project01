@@ -49,7 +49,7 @@
             </tr>
             <tr>
                 <td style="text-align:center;">1</td>
-                <td></td>
+                <td style="text-align:center;">'.$data['products_code'].'</td>
                 <td style="padding-left: 5px;">'.$data['products_name'].'</td>
                 <td style="text-align:right;">'.$data['lot_weight'].'</td>
                 <td style="text-align:center;">กก.</td>
@@ -160,11 +160,11 @@
             <tr>
                 <td style="width:33.33%; text-align:center; padding-top: 100px">
                 ...............................<br/>
-                ผู้รับสินค้า
+                ผู้ขายสินค้า
                 </td>
                 <td style="width:33.33%; text-align:center; padding-top: 100px">
                 ...............................<br/>
-                ผู้ส่งสินค้า
+                ผู้สั่งสินค้า
                 </td>
                 <td style="width:33.33%; text-align:center; padding-top: 100px">
                 ...............................<br/>

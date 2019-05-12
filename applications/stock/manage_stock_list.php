@@ -83,12 +83,37 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="?app=stock&action=manage_stock_transfer&id=<?=$id?>" class="form-inline" method="POST">
-            <input type="hidden" name="lot_id" value="">
-            วันที่ส่งสินค้า <input type="date" class="form-control ml-2 mr-2" name="lot_transfer_date" required>
-            <button type="submit" class="btn btn-success">บันทึกข้อมูล</button>
+        <form action="?app=stock&action=manage_stock_transfer&id=<?=$id?>" method="POST">
+            <div class="form-group row">
+                <label for="staticEmail" class="col-sm-4 col-form-label text-right">วันที่ส่งสินค้า</label>
+                <div class="col-sm-8">
+                    <input type="date" class="form-control" name="lot_transfer_date" required>
+                    <input type="hidden" class="form-control" name="lot_id">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword" class="col-sm-4 col-form-label text-right">ค่ากรรมกร/ค่าโอน</label>
+                <div class="col-sm-8">
+                    <input type="number" step="0.01" class="form-control" name="lot_other" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword" class="col-sm-4 col-form-label text-right"></label>
+                <div class="col-sm-8">
+                    <button type="submit" class="btn btn-success">บันทึกข้อมูล</button>
+                </div>
+            </div>
         </form>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+    $('#transfer').on('shown.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var id = button.data('lotid')
+            var modal = $(this)
+            modal.find('input[name=lot_id]').val(id)
+    })
+</script>

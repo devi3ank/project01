@@ -5,6 +5,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    display: flex;
 }
 
 #app > .container-login {
@@ -25,3 +26,50 @@
     font-size: 28px;
     font-weight: bold;
 }
+
+#app > .detail-login {
+    width: 75%;
+    height: 100vh;
+    padding: 8px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#app > .detail-login > .list-detail {
+    width: 33.33%;
+    padding: 8px;
+}
+
+#app > .detail-login > .list-detail > .description {
+    position: relative;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 300px;
+}
+
+#app > .detail-login > .list-detail > .description > .name-detail {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #999;
+    height: 50px;
+    padding: 10px;
+    background-color: rgba(0,0,0,.3);
+    color: #FFF;
+    transition: all .5s;
+}
+
+#app > .detail-login > .list-detail > .description > .name-detail > span{
+    display: none;
+}
+
+#app > .detail-login > .list-detail > .description:hover > .name-detail {
+    height: 100%;
+    transition: all .3s;
+}
+
+#app > .detail-login > .list-detail > .description:hover > .name-detail > span{
+    display: block;
+}
+

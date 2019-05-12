@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="staticEmail" class="col-sm-2 col-form-label text-right">น้ำหนัก</label>
+            <label for="staticEmail" class="col-sm-2 col-form-label text-right">น้ำหนัก (กก.)</label>
             <div class="col-sm-5">
                 <input type="number" step="0.01" class="form-control" name="lot_weight" required>
             </div>

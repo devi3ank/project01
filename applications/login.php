@@ -17,4 +17,28 @@
             </form>
         </div>
     </div>
+    <div class="detail-login">
+        <?php
+            $result = select_db("
+                SELECT
+                    *
+                FROM
+                    detail_tb
+                WHERE
+                    detail_status = '1'
+            ");
+
+            if ($result->num_rows > 0) {
+                while($row = $result->fetch_assoc()) {
+        ?>
+        <div class="list-detail">
+            <div class="description" style="background-image:url('./uploads/<?=$row['detail_image']?>')">
+                <div class="name-detail">
+                    <?=$row['detail_name']?><br/>
+                    <span><?=$row['detail_description']?></span>
+                </div>
+            </div>
+        </div>
+        <?php }} ?>
+    </div>
 </div>

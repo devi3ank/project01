@@ -22,7 +22,7 @@
     <ul class="sidebar-list">
         
         <li>
-            <a href="#" class="text-danger"><i class="fas fa-angle-double-right"></i> จัดการข้อมูลเว็ปไซต์</a>
+            <a href="?app=detail&action=list"><i class="fas fa-angle-double-right"></i> จัดการข้อมูลเว็ปไซต์</a>
         </li>
         <li class="<?php if($action == 'products_list' || $action == 'products_add' || $action == 'products_edit'){echo "active";}?>">
             <a href="?app=products&action=products_list"><i class="fas fa-angle-double-right"></i> จัดการข้อมูลสินค้า</a>
@@ -34,10 +34,7 @@
             <a href="?app=datatransfer&action=stock"><i class="fas fa-angle-double-right"></i> ตรวจสอบสินค้าในคลัง</a>
         </li>
         <li>
-            <a href="#" class="text-danger"><i class="fas fa-angle-double-right"></i> จัดการข้อมูลการเงิน</a>
-        </li>
-        <li>
-            <a href="#" class="text-danger"><i class="fas fa-angle-double-right"></i> ตรวจสอบข้อมูลการเงิน</a>
+            <a href="?app=datatransfer&action=finance"><i class="fas fa-angle-double-right"></i> ตรวจสอบข้อมูลการเงิน</a>
         </li>
         <li>
             <a href="?app=datatransfer&action=buy"><i class="fas fa-angle-double-right"></i> ตรวจสอบข้อมูลการสั่งซื้อสินค้า</a>

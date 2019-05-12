@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 11, 2019 at 11:54 AM
+-- Generation Time: May 12, 2019 at 08:47 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 5.6.40
 
@@ -25,6 +25,32 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `detail_tb`
+--
+
+CREATE TABLE `detail_tb` (
+  `detail_id` int(11) NOT NULL,
+  `detail_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'ชื่อรายละเอียด',
+  `detail_description` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'ระเอียด',
+  `detail_image` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'รูป',
+  `detail_status` int(1) NOT NULL COMMENT 'สถานะ 1.ใช้งาน 2.ปิดการใช้งาน 3.ลบ',
+  `detail_fitby` int(11) NOT NULL COMMENT 'ผู้บันทึก',
+  `detail_fitdate` datetime NOT NULL COMMENT 'วันที่บันทึก'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `detail_tb`
+--
+
+INSERT INTO `detail_tb` (`detail_id`, `detail_name`, `detail_description`, `detail_image`, `detail_status`, `detail_fitby`, `detail_fitdate`) VALUES
+(1, 'asdasd', 'dgsdfg', '', 3, 1, '2019-05-12 08:11:12'),
+(2, 'แมว', 'แมว', '', 3, 1, '2019-05-12 08:16:11'),
+(3, 'แมว', 'แมว', 'L5A1hOTzfIzMn85JTUp3.jpg', 3, 1, '2019-05-12 08:21:49'),
+(4, 'ข้าวเหนียว', 'รายละเอียดข้าวเหนียว', 'XBU1mldWd8HWmUYKa98y.jpg', 1, 1, '2019-05-12 08:44:38');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `lot_tb`
 --
 
@@ -41,6 +67,7 @@ CREATE TABLE `lot_tb` (
   `lot_status` int(1) NOT NULL DEFAULT '1' COMMENT 'สถานะ 1.ยังไม่ได้ขาย 2.ขายแล้ว',
   `lot_transfer` int(1) NOT NULL DEFAULT '1' COMMENT 'สถานะการส่ง 1.ยังไม่ได้ส่ง 2.ส่งเรียบร้อยแล้ว',
   `lot_transfer_date` date NOT NULL COMMENT 'วันที่ส่งสินค้า',
+  `lot_other` decimal(10,2) NOT NULL COMMENT 'ค่ากรรมกร',
   `lot_fitby` int(11) NOT NULL COMMENT 'ผู้บันทึก',
   `lot_fitdate` datetime NOT NULL COMMENT 'บันทึกเมื่อ'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -49,10 +76,10 @@ CREATE TABLE `lot_tb` (
 -- Dumping data for table `lot_tb`
 --
 
-INSERT INTO `lot_tb` (`lot_id`, `products_id`, `lot_date`, `lot_weight`, `lot_price_buy`, `store_buy_id`, `lot_price_sale`, `lot_date_sale`, `store_sale_id`, `lot_status`, `lot_transfer`, `lot_transfer_date`, `lot_fitby`, `lot_fitdate`) VALUES
-(1, 3, '2019-05-05', '300.00', '8.20', 1, '9.00', '2019-05-11', 1, 2, 1, '2019-05-11', 1, '2019-05-05 10:37:27'),
-(2, 3, '2019-05-11', '2000.00', '8.20', 2, '9.00', '2019-05-11', 1, 1, 1, '2019-05-11', 1, '2019-05-11 07:19:11'),
-(3, 3, '2019-05-11', '2000.00', '8.20', 2, '9.00', '2019-05-11', 1, 1, 1, '0000-00-00', 1, '2019-05-11 07:19:29');
+INSERT INTO `lot_tb` (`lot_id`, `products_id`, `lot_date`, `lot_weight`, `lot_price_buy`, `store_buy_id`, `lot_price_sale`, `lot_date_sale`, `store_sale_id`, `lot_status`, `lot_transfer`, `lot_transfer_date`, `lot_other`, `lot_fitby`, `lot_fitdate`) VALUES
+(1, 3, '2019-05-12', '350.00', '8.20', 2, '9.00', '2019-05-12', 1, 2, 2, '2019-05-12', '567.00', 1, '2019-05-12 05:07:59'),
+(2, 3, '2019-05-12', '30677.00', '8.20', 1, '9.00', '2019-05-12', 2, 2, 2, '2019-05-12', '1058.00', 1, '2019-05-12 05:22:24'),
+(3, 3, '2019-05-12', '10000.00', '8.20', 2, '9.00', '2019-05-12', 1, 2, 2, '2019-05-12', '1300.00', 1, '2019-05-12 05:54:24');
 
 -- --------------------------------------------------------
 
@@ -123,12 +150,18 @@ CREATE TABLE `user_tb` (
 --
 
 INSERT INTO `user_tb` (`user_id`, `user_username`, `user_password`, `user_fullname`, `user_email`, `user_phone`, `user_store`, `user_type`, `user_status`) VALUES
-(1, 'admin', 'admin1234', 'อัฐพล เวียงเขียว', 'test@email.com', '-', 1, 1, 1),
+(1, 'admin', 'admin1234', 'ณัฐพงศ์ พลพัชรวัฒน์', 'test@email.com', '-', 1, 1, 1),
 (10, 'test2', '1234', 'Mean', 'sfasdf@asdasd', '000000', 1, 3, 3);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `detail_tb`
+--
+ALTER TABLE `detail_tb`
+  ADD PRIMARY KEY (`detail_id`);
 
 --
 -- Indexes for table `lot_tb`
@@ -157,6 +190,12 @@ ALTER TABLE `user_tb`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `detail_tb`
+--
+ALTER TABLE `detail_tb`
+  MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `lot_tb`

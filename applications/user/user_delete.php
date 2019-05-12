@@ -1,4 +1,5 @@
 <?php
+    check_user($_SESSION['user_type'], array(1));
     $id = $_GET['id'];
     update_db("user_tb", array('user_status'=>3), "user_id=$id");
     echo "

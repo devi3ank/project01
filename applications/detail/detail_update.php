@@ -1,7 +1,6 @@
 <?php
+    check_user($_SESSION['user_type'], array(1));
     $id = $_GET['id'];
-
-    //dieArray($_FILES['fileToUpload']);
 
     if ($_FILES['fileToUpload']['name'] == "") {
         $data['detail_name'] = $_POST['detail_name'];

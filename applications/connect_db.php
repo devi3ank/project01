@@ -54,7 +54,14 @@
     function select_db($sql) {
         Global $conn;
         return $conn->query($sql);
-    } 
+    }
+
+    function check_user($userType, $arrType=array()) {
+        if (!in_array($userType, $arrType)) {
+            alert_msg("ไม่อนุญาติให้เข้าถึงเมนูนี้ได้");
+            exit();
+        }
+    }
 
     function alert_msg($msg) {
         echo '

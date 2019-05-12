@@ -1,4 +1,5 @@
 <?php
+    check_user($_SESSION['user_type'], array(1));
     $result = select_db("
         SELECT
             *
@@ -33,7 +34,7 @@
                     <td class="text-center"><?=$status[$row['products_status']]?></td>
                     <td class="text-center">
                         <a href="?app=products&action=products_edit&id=<?=$row['products_id']?>" class="btn btn-secondary btn-sm"><i class="fas fa-edit"></i></a>
-                        <a href="?app=products&action=products_delete&id=<?=$row['products_id']?>" class="btn btn-danger btn-sm" onclick="confirm('ยืนยันการลบข้อมูล');"><i class="far fa-trash-alt"></i></a>
+                        <a href="?app=products&action=products_delete&id=<?=$row['products_id']?>" class="btn btn-danger btn-sm" onclick="return confirm('ยืนยันการลบข้อมูล');"><i class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>
             <?php $i++; }} else { ?>

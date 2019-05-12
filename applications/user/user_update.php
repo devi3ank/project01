@@ -1,6 +1,15 @@
 <?php
+    check_user($_SESSION['user_type'], array(1));
+
     $id = $_GET['id'];
-    update_db("user_tb", $_POST, "user_id = '$id'");
+
+    $data = $_POST;
+
+    if ($_SESSION['user_type'] == 1) {
+        $data['user_type'] = 1;
+    }
+
+    update_db("user_tb", $data, "user_id = '$id'");
     echo "
         <script>
             alert('แก้ไขข้อมูลเรียบร้อยแล้ว');

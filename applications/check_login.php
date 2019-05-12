@@ -27,6 +27,7 @@ if (!empty($_POST['u_username']) && !empty($_POST['u_password'])) {
 
     $result = $conn->query($sql);
 
+    //dieArray($result->fetch_assoc());
     if ($result->num_rows > 0) {
         $row = $result->fetch_assoc();
         $_SESSION['loginStatus']    = "LOGIN_SUCCESS";
@@ -38,6 +39,8 @@ if (!empty($_POST['u_username']) && !empty($_POST['u_password'])) {
         $_SESSION['store_type']     = $row['store_type'];
     }     
 }
+
+//dieArray($_SESSION);
 
 echo "<script>window.location.href='".$domain."';</script>";
 

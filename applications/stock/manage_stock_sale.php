@@ -1,5 +1,5 @@
 <?php
-
+    check_user($_SESSION['user_type'], array(1,2));
     $id = $_GET['id']; // products_id
     $lot_id = $_GET['lot_id']; // lot_id
     $result = select_db("

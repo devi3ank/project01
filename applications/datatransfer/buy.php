@@ -1,5 +1,5 @@
 <?php
-
+    check_user($_SESSION['user_type'], array(1,2));
     if (empty($_POST['date_start']) && empty($_POST['date_end'])) {
         $dateStart = date('Y-m-d');
         $dateEnd = date('Y-m-d');

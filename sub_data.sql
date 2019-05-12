@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 12, 2019 at 08:47 AM
+-- Generation Time: May 12, 2019 at 06:11 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 5.6.40
 
@@ -38,15 +38,22 @@ CREATE TABLE `detail_tb` (
   `detail_fitdate` datetime NOT NULL COMMENT 'วันที่บันทึก'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `detail_tb`
+-- Table structure for table `document_tb`
 --
 
-INSERT INTO `detail_tb` (`detail_id`, `detail_name`, `detail_description`, `detail_image`, `detail_status`, `detail_fitby`, `detail_fitdate`) VALUES
-(1, 'asdasd', 'dgsdfg', '', 3, 1, '2019-05-12 08:11:12'),
-(2, 'แมว', 'แมว', '', 3, 1, '2019-05-12 08:16:11'),
-(3, 'แมว', 'แมว', 'L5A1hOTzfIzMn85JTUp3.jpg', 3, 1, '2019-05-12 08:21:49'),
-(4, 'ข้าวเหนียว', 'รายละเอียดข้าวเหนียว', 'XBU1mldWd8HWmUYKa98y.jpg', 1, 1, '2019-05-12 08:44:38');
+CREATE TABLE `document_tb` (
+  `doc_id` int(11) NOT NULL,
+  `doc_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'ชื่อเอกสาร',
+  `doc_file` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'ชื่อไฟล์',
+  `doc_description` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'รายละเอียด',
+  `doc_tostore` int(11) NOT NULL COMMENT 'ร้านที่เห็นได้',
+  `doc_status` int(1) NOT NULL COMMENT 'สถานะ 1.แสดง 2.ไม่แสดง 3.ลบ',
+  `doc_fitby` int(11) NOT NULL COMMENT 'ผู้บันทึก',
+  `doc_fitdate` datetime NOT NULL COMMENT 'วันที่บันทึก'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -79,7 +86,8 @@ CREATE TABLE `lot_tb` (
 INSERT INTO `lot_tb` (`lot_id`, `products_id`, `lot_date`, `lot_weight`, `lot_price_buy`, `store_buy_id`, `lot_price_sale`, `lot_date_sale`, `store_sale_id`, `lot_status`, `lot_transfer`, `lot_transfer_date`, `lot_other`, `lot_fitby`, `lot_fitdate`) VALUES
 (1, 3, '2019-05-12', '350.00', '8.20', 2, '9.00', '2019-05-12', 1, 2, 2, '2019-05-12', '567.00', 1, '2019-05-12 05:07:59'),
 (2, 3, '2019-05-12', '30677.00', '8.20', 1, '9.00', '2019-05-12', 2, 2, 2, '2019-05-12', '1058.00', 1, '2019-05-12 05:22:24'),
-(3, 3, '2019-05-12', '10000.00', '8.20', 2, '9.00', '2019-05-12', 1, 2, 2, '2019-05-12', '1300.00', 1, '2019-05-12 05:54:24');
+(3, 3, '2019-05-12', '10000.00', '8.20', 2, '9.00', '2019-05-12', 1, 2, 2, '2019-05-12', '1300.00', 1, '2019-05-12 05:54:24'),
+(4, 3, '2019-05-13', '500.00', '8.30', 2, '0.00', '0000-00-00', 0, 1, 1, '0000-00-00', '0.00', 1, '2019-05-12 16:34:12');
 
 -- --------------------------------------------------------
 
@@ -150,8 +158,7 @@ CREATE TABLE `user_tb` (
 --
 
 INSERT INTO `user_tb` (`user_id`, `user_username`, `user_password`, `user_fullname`, `user_email`, `user_phone`, `user_store`, `user_type`, `user_status`) VALUES
-(1, 'admin', 'admin1234', 'ณัฐพงศ์ พลพัชรวัฒน์', 'test@email.com', '-', 1, 1, 1),
-(10, 'test2', '1234', 'Mean', 'sfasdf@asdasd', '000000', 1, 3, 3);
+(1, 'admin', 'admin1234', 'ณัฐพงศ์ พลพัชรวัฒน์', 'test@email.com', '-', 1, 1, 1);
 
 --
 -- Indexes for dumped tables
@@ -162,6 +169,12 @@ INSERT INTO `user_tb` (`user_id`, `user_username`, `user_password`, `user_fullna
 --
 ALTER TABLE `detail_tb`
   ADD PRIMARY KEY (`detail_id`);
+
+--
+-- Indexes for table `document_tb`
+--
+ALTER TABLE `document_tb`
+  ADD PRIMARY KEY (`doc_id`);
 
 --
 -- Indexes for table `lot_tb`
@@ -195,13 +208,19 @@ ALTER TABLE `user_tb`
 -- AUTO_INCREMENT for table `detail_tb`
 --
 ALTER TABLE `detail_tb`
-  MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `detail_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `document_tb`
+--
+ALTER TABLE `document_tb`
+  MODIFY `doc_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `lot_tb`
 --
 ALTER TABLE `lot_tb`
-  MODIFY `lot_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `lot_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `products_tb`
@@ -219,7 +238,7 @@ ALTER TABLE `store_tb`
 -- AUTO_INCREMENT for table `user_tb`
 --
 ALTER TABLE `user_tb`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

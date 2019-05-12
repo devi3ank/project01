@@ -20,7 +20,7 @@
 
 <div class="sidebar">
     <ul class="sidebar-list">
-        
+    <?php if ($_SESSION['user_type'] == 1) { ?>
         <li>
             <a href="?app=detail&action=list"><i class="fas fa-angle-double-right"></i> จัดการข้อมูลเว็ปไซต์</a>
         </li>
@@ -30,22 +30,22 @@
         <li class="<?php if($action == 'manage_stock' || $action == 'manage_stock_sale'){echo "active";}?>">
             <a href="?app=stock&action=manage_stock"><i class="fas fa-angle-double-right"></i> จัดการข้อมูลสินค้าในคลัง</a>
         </li>
-        <li>
+        <li class="<?php if($action == 'stock'){echo "active";}?>">
             <a href="?app=datatransfer&action=stock"><i class="fas fa-angle-double-right"></i> ตรวจสอบสินค้าในคลัง</a>
         </li>
-        <li>
+        <li class="<?php if($action == 'finance'){echo "active";}?>">
             <a href="?app=datatransfer&action=finance"><i class="fas fa-angle-double-right"></i> ตรวจสอบข้อมูลการเงิน</a>
         </li>
-        <li>
+        <li class="<?php if($action == 'buy'){echo "active";}?>">
             <a href="?app=datatransfer&action=buy"><i class="fas fa-angle-double-right"></i> ตรวจสอบข้อมูลการสั่งซื้อสินค้า</a>
         </li>
-        <li>
+        <li class="<?php if($action == 'sale'){echo "active";}?>">
             <a href="?app=datatransfer&action=sale"><i class="fas fa-angle-double-right"></i> ตรวจสอบข้อมูลการขายสินค้า</a>
         </li>
-        <li>
+        <li class="<?php if($action == 'transfer'){echo "active";}?>">
             <a href="?app=datatransfer&action=transfer"><i class="fas fa-angle-double-right"></i> ตรวจสอบข้อมูลการส่งสินค้า</a>
         </li>
-        <li>
+        <li class="<?php if($action == 'report_list_buy'){echo "active";}?>">
             <a href="?app=reports&action=report_list_buy"><i class="fas fa-angle-double-right"></i> พิมพ์รายงาน</a>
         </li>
         <li class="<?php if($action == 'store_list' || $action == 'store_add' || $action == 'store_edit'){echo "active";}?>">
@@ -54,5 +54,39 @@
         <li class="<?php if($action == 'user_list' || $action == 'user_add' || $action == 'user_edit'){echo "active";}?>">
             <a href="?app=user&action=user_list"><i class="fas fa-angle-double-right"></i> จัดการข้อมูลผู้ใช้งาน</a>
         </li>
+        <li class="<?php if($action == 'document'){echo "active";}?>">
+            <a href="?app=documents&action=document"><i class="fas fa-angle-double-right"></i> เอกสารข้อมูลต่าง ๆ</a>
+        </li>
+    <?php } elseif($_SESSION['user_type'] == 2) { ?>
+        <li class="<?php if($action == 'stock'){echo "active";}?>">
+            <a href="?app=datatransfer&action=stock"><i class="fas fa-angle-double-right"></i> ตรวจสอบสินค้าในคลัง</a>
+        </li>
+        <li class="<?php if($action == 'finance'){echo "active";}?>">
+            <a href="?app=datatransfer&action=finance"><i class="fas fa-angle-double-right"></i> ตรวจสอบข้อมูลการเงิน</a>
+        </li>
+        <li class="<?php if($action == 'buy'){echo "active";}?>">
+            <a href="?app=datatransfer&action=buy"><i class="fas fa-angle-double-right"></i> ตรวจสอบข้อมูลการสั่งซื้อสินค้า</a>
+        </li>
+        <li class="<?php if($action == 'sale'){echo "active";}?>">
+            <a href="?app=datatransfer&action=sale"><i class="fas fa-angle-double-right"></i> ตรวจสอบข้อมูลการขายสินค้า</a>
+        </li>
+        <li class="<?php if($action == 'transfer'){echo "active";}?>">
+            <a href="?app=datatransfer&action=transfer"><i class="fas fa-angle-double-right"></i> ตรวจสอบข้อมูลการส่งสินค้า</a>
+        </li>
+    <?php } elseif($_SESSION['user_type'] == 3) { ?>
+        <li class="<?php if($action == 'products_order_buy'){echo "active";}?>">
+            <a href="?app=products&action=products_order_buy"><i class="fas fa-angle-double-right"></i> สั่งซื้อสินค้า</a>
+        </li>
+        <li class="<?php if($action == 'document'){echo "active";}?>">
+            <a href="?app=documents&action=document"><i class="fas fa-angle-double-right"></i> เอกสารข้อมูลต่าง ๆ</a>
+        </li>
+    <?php } elseif($_SESSION['user_type'] == 4) { ?>
+        <li class="<?php if($action == 'products_order_sale'){echo "active";}?>">
+            <a href="?app=products&action=products_order_sale"><i class="fas fa-angle-double-right"></i> ขายสินค้า</a>
+        </li>
+        <li class="<?php if($action == 'document'){echo "active";}?>">
+            <a href="?app=documents&action=document"><i class="fas fa-angle-double-right"></i> เอกสารข้อมูลต่าง ๆ</a>
+        </li>
+    <?php } ?>
     </ul>
 </div>

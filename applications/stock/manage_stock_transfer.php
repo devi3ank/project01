@@ -1,5 +1,5 @@
 <?php
-
+    check_user($_SESSION['user_type'], array(1,2));
     $id = $_GET['id']; // products_id
     $lot_id = $_POST['lot_id']; // lot_id
     $data['lot_transfer_date'] = $_POST['lot_transfer_date'];

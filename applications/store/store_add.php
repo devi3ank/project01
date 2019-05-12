@@ -1,3 +1,6 @@
+<?php
+    check_user($_SESSION['user_type'], array(1));
+?>
 <div class="detail">
     <p class="title">เพิ่มข้อมูลร้านค้า</p>
     <form action="?app=store&action=store_insert" method="POST">

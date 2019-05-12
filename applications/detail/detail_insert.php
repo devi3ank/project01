@@ -1,4 +1,5 @@
 <?php
+    check_user($_SESSION['user_type'], array(1));
     $target_dir = "uploads/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;

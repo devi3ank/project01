@@ -1,4 +1,5 @@
 <?php
+    check_user($_SESSION['user_type'], array(1));
     $id = $_GET['id'];
     update_db("products_tb", $_POST, "products_id = '$id'");
     echo "

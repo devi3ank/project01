@@ -1,4 +1,5 @@
 <?php
+    check_user($_SESSION['user_type'], array(1,2));
     $result = select_db("
         SELECT
             products_tb.*,

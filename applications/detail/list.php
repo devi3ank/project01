@@ -1,4 +1,6 @@
 <?php
+    check_user($_SESSION['user_type'], array(1));
+
     $result = select_db("
         SELECT
             *

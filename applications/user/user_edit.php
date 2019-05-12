@@ -1,4 +1,5 @@
 <?php 
+    check_user($_SESSION['user_type'], array(1));
     $id = $_GET['id'];
 
     $resultStore = select_db("    

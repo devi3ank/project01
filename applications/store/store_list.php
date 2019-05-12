@@ -1,5 +1,5 @@
 <?php
-
+    check_user($_SESSION['user_type'], array(1));
    @ $store_name = $_POST['store_name'];
 
     $where = ($store_name!="")? "AND store_name LIKE '$store_name%'":"";

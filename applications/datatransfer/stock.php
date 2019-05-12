@@ -1,5 +1,5 @@
 <?php
-
+    check_user($_SESSION['user_type'], array(1,2));
     $search = (empty($_POST['search']))?"":$_POST['search'];
 
     $result = select_db("

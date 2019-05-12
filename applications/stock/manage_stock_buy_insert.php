@@ -1,5 +1,5 @@
 <?php
-
+    check_user($_SESSION['user_type'], array(1,2));
     $id = $_GET['id'];
 
     $data = $_POST;

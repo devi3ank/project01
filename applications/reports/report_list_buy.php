@@ -1,5 +1,4 @@
 <?php
-
     if (empty($_POST['date_start']) && empty($_POST['date_end'])) {
         $dateStart = date('Y-m-d');
         $dateEnd = date('Y-m-d');

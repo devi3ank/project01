@@ -28,7 +28,7 @@
                 <input type="text" name="doc_description" class="form-control" required>
             </div>
         </div>
-        <?php if ($_SESSION['user_type'] != 1) { ?>
+        <?php if ($_SESSION['user_type'] == 1) { ?>
         <div class="form-group row">
             <label for="staticEmail" class="col-sm-2 col-form-label text-right">ร้านที่ต้องการส่งไฟล์ : </label>
             <div class="col-sm-5">

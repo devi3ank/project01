@@ -8,7 +8,8 @@
         FROM
             lot_tb
         WHERE
-            products_id = '$id'
+            products_id = '$id' AND
+            lot_status != '3'
     ");
 ?>
 <div class="detail">
@@ -36,6 +37,7 @@
                 <th class="text-center" style="width: 150px">ราคาซื้อ</th>
                 <th class="text-center" style="width: 150px">ยอดจริง</th>
                 <th class="text-center" style="width: 180px"></th>
+                <th class="text-center" style="width: 50px"></th>
             </tr>
         </thead>
         <tbody>
@@ -62,6 +64,9 @@
                     <?php } else {
                         echo "ส่งสินค้าเรียบร้อย";
                     } ?>
+                </td>
+                <td class="text-right">
+                    <a href="?app=stock&action=manage_stock_delete&id=<?=$id?>&lot_id=<?=$row['lot_id']?>" class="btn btn-danger btn-sm" onclick="return confirm('ยืนยันการลบข้อมูล');"><i class="far fa-trash-alt"></i></a>
                 </td>
             </tr>
         <?php $i++;}} else { ?>
@@ -112,9 +117,9 @@
 
 <script>
     $('#transfer').on('shown.bs.modal', function (event) {
-            var button = $(event.relatedTarget)
-            var id = button.data('lotid')
-            var modal = $(this)
-            modal.find('input[name=lot_id]').val(id)
+        var button = $(event.relatedTarget)
+        var id = button.data('lotid')
+        var modal = $(this)
+        modal.find('input[name=lot_id]').val(id)
     })
 </script>

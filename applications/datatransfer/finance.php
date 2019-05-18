@@ -16,6 +16,7 @@ $result = select_db("
         lot_tb
     INNER JOIN store_tb ON lot_tb.store_buy_id = store_tb.store_id
     WHERE
+        lot_tb.lot_status  != '3' AND
         lot_tb.lot_fitdate BETWEEN '$dateStart 00:00:00' AND '$dateEnd 23:59:59'
     ORDER BY 
         lot_tb.lot_fitdate ASC
@@ -30,6 +31,7 @@ $resultChartsBuy = select_db("
         lot_tb 
     INNER JOIN store_tb ON lot_tb.store_buy_id = store_tb.store_id 
     WHERE
+        lot_tb.lot_status  != '3' AND
         lot_tb.lot_fitdate BETWEEN '$dateStart 00:00:00' AND '$dateEnd 23:59:59'
     GROUP BY
         store_tb.store_name
@@ -44,6 +46,7 @@ $resultChartsSale = select_db("
         lot_tb 
     INNER JOIN store_tb ON lot_tb.store_sale_id = store_tb.store_id 
     WHERE
+        lot_tb.lot_status  != '3' AND
         lot_tb.lot_fitdate BETWEEN '$dateStart 00:00:00' AND '$dateEnd 23:59:59'
     GROUP BY
         store_tb.store_name

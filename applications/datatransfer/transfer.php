@@ -17,6 +17,7 @@
             lot_tb
         INNER JOIN store_tb ON lot_tb.store_sale_id = store_tb.store_id
         WHERE
+            lot_tb.lot_status  != '3' AND
             lot_date_sale BETWEEN '$dateStart 00:00:00' AND '$dateEnd 23:59:59'
         ORDER BY 
             lot_transfer_date ASC

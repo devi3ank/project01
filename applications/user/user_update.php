@@ -5,7 +5,7 @@
 
     $data = $_POST;
 
-    if ($_SESSION['user_type'] == 1) {
+    if ($_SESSION['user_id'] == 1) {
         $data['user_type'] = 1;
     }
 

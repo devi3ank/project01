@@ -6,7 +6,7 @@
             COUNT(lot_tb.lot_id) AS cntLot
         FROM
             products_tb
-        LEFT JOIN lot_tb ON products_tb.products_id = lot_tb.products_id
+        LEFT JOIN lot_tb ON products_tb.products_id = lot_tb.products_id AND lot_status != '3'
         WHERE
             products_status = '1'
         GROUP BY products_tb.products_id

@@ -7,8 +7,9 @@ if ($conn->connect_error) {
 }
 
 if (!empty($_POST['u_username']) && !empty($_POST['u_password'])) {
-    $username = $_POST['u_username'];
-    $password = $_POST['u_password'];
+    $username = mysqli_real_escape_string($conn, stripslashes($_POST['u_username']));
+
+    $password = mysqli_real_escape_string($conn, stripslashes($_POST['u_password']));
 
     $sql = "    
         SELECT 

@@ -64,7 +64,13 @@ if ($resultChartsBuy->num_rows > 0) {
 
 if ($resultChartsSale->num_rows > 0) {
     while($chart = $resultChartsSale->fetch_assoc()) {
-        $arrChart[$chart['store_id']]['sale'] = $chart['sale'];
+        if (empty($arrChart[$chart['store_id']])) {
+            $arrChart[$chart['store_id']]['name']  = $chart['store_name'];
+            $arrChart[$chart['store_id']]['buy']   = 0;
+            $arrChart[$chart['store_id']]['sale'] = $chart['sale'];
+        } else {
+            $arrChart[$chart['store_id']]['sale'] = $chart['sale'];
+        }
     }
 }
 

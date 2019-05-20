@@ -13,7 +13,8 @@
 
 //================================================ CONFIG ============================================================
     $status         = array('', 'ใช้งาน', 'ปิดการใช้งาน');
-    $statusLot      = array('', 'ยังไม่ได้ขาย', 'ขายแล้ว');
+    $statusLot      = array('', 'ยังไม่ได้ขาย', 'ขายแล้ว', 'ลบ', '<span class="text-danger font-weight-bold">สั่งซื้อ</span>', '<span class="text-success font-weight-bold">ชำระเงินเรียบร้อย</span>');
+    $statusQuotation= array('', 'เสนอขาย', 'รับซื้อสินค้า');
     $typeStore      = array('', 'เจ้าของร้าน', 'ร้านซื้อสินค้า', 'ร้านขายสินค้า');
     $transferStatus = array('', 'ยังไม่ได้ส่งสินค้า', 'ส่งสินค้าเรียบร้อยแล้ว');
     $protocol       = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";

@@ -45,8 +45,11 @@
         <li class="<?php if($action == 'transfer'){echo "active";}?>">
             <a href="?app=datatransfer&action=transfer"><i class="fas fa-angle-double-right"></i> ตรวจสอบข้อมูลการส่งสินค้า</a>
         </li>
-        <li class="<?php if($action == 'report_list_buy'){echo "active";}?>">
-            <a href="?app=reports&action=report_list_buy"><i class="fas fa-angle-double-right"></i> พิมพ์รายงาน</a>
+        <li class="<?php if($action == 'order_list_sale'){echo "active";}?>">
+            <a href="?app=order&action=order_list_sale"><i class="fas fa-angle-double-right"></i> ตรวจสอบข้อมูลการเสนอขาย</a>
+        </li>
+        <li class="<?php if($action == 'report_list'){echo "active";}?>">
+            <a href="?app=reports&action=report_list"><i class="fas fa-angle-double-right"></i> พิมพ์รายงาน</a>
         </li>
         <li class="<?php if($action == 'store_list' || $action == 'store_add' || $action == 'store_edit'){echo "active";}?>">
             <a href="?app=store&action=store_list"><i class="fas fa-angle-double-right"></i> จัดการร้านค้า</a>
@@ -75,14 +78,14 @@
         </li>
     <?php } elseif($_SESSION['user_type'] == 3) { ?>
         <li class="<?php if($action == 'products_order_buy'){echo "active";}?>">
-            <a href="?app=products&action=products_order_buy"><i class="fas fa-angle-double-right"></i> สั่งซื้อสินค้า</a>
+            <a href="?app=order&action=order_list"><i class="fas fa-angle-double-right"></i> สั่งซื้อสินค้า</a>
         </li>
         <li class="<?php if($action == 'document'){echo "active";}?>">
             <a href="?app=documents&action=document"><i class="fas fa-angle-double-right"></i> เอกสารข้อมูลต่าง ๆ</a>
         </li>
     <?php } elseif($_SESSION['user_type'] == 4) { ?>
-        <li class="<?php if($action == 'products_order_sale'){echo "active";}?>">
-            <a href="?app=products&action=products_order_sale"><i class="fas fa-angle-double-right"></i> ขายสินค้า</a>
+        <li class="<?php if($action == 'order_sale'){echo "active";}?>">
+            <a href="?app=order&action=order_sale"><i class="fas fa-angle-double-right"></i> ขายสินค้า</a>
         </li>
         <li class="<?php if($action == 'document'){echo "active";}?>">
             <a href="?app=documents&action=document"><i class="fas fa-angle-double-right"></i> เอกสารข้อมูลต่าง ๆ</a>

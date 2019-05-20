@@ -11,7 +11,7 @@
         INNER JOIN products_tb ON lot_tb.products_id = products_tb.products_id
         WHERE
             lot_id = '$lot_id' AND
-            lot_status = '1'
+            (lot_status = '1' OR lot_status = '4')
     ");
 
     if ($result->num_rows == 0) {
@@ -20,6 +20,11 @@
     }
 
     $row = $result->fetch_assoc();
+    $storeOrder = "";
+    if ($row['store_order'] != '0') {
+        $storeID = $row['store_order'];
+        $storeOrder = " AND store_id = '$storeID'";
+    }
 
     $resultStore = select_db("
         SELECT
@@ -27,7 +32,8 @@
         FROM
             store_tb
         WHERE
-            store_status = '1'
+            store_status = '1' 
+            $storeOrder
     ");
 ?>
 
@@ -56,13 +62,13 @@
         <div class="form-group row">
             <label for="inputPassword" class="col-sm-2 col-form-label text-right">ราคาขาย</label>
             <div class="col-sm-5">
-                <input type="number" step="0.01" class="form-control" name="lot_price_sale" value="" required>
+                <input type="number" step="0.01" class="form-control" name="lot_price_sale" value="<?=$row['lot_price_sale']?>" required>
             </div>
         </div>
         <div class="form-group row">
             <label for="inputPassword" class="col-sm-2 col-form-label text-right">วันที่ขาย</label>
             <div class="col-sm-5">
-                <input type="date" class="form-control" name="lot_date_sale" value="lot_date_sale" required>
+                <input type="date" class="form-control" name="lot_date_sale" value="<?=date("Y-m-d")?>" required>
             </div>
         </div>
         <div class="form-group row">
@@ -73,7 +79,7 @@
                     <?php
                         while($rowStore = $resultStore->fetch_assoc()) {
                     ?>
-                    <option value="<?=$rowStore['store_id']?>"><?=$rowStore['store_name']?></option>
+                    <option value="<?=$rowStore['store_id']?>" <?php if($row['store_order'] == $rowStore['store_id']){ echo "selected"; }?>><?=$rowStore['store_name']?></option>
                     <?php } ?>
                 </select>
             </div>

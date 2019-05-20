@@ -60,9 +60,9 @@
                 <td class="text-center"><?=$i?></td>
                 <td><?=$row['store_name']?></td>
                 <td class="text-center"><?=date_format(date_create($row['lot_date']),"d/m/Y")?></td>
-                <td class="text-right"><?=number_format($row['lot_price_buy'],2)?></td>
+                <td class="text-right"><?=number_format($row['lot_price_sale'],2)?></td>
                 <td class="text-right"><?=number_format($row['lot_weight'],2)?></td>
-                <td class="text-right"><?=number_format($row['lot_weight']*$row['lot_price_buy'],2)?></td>
+                <td class="text-right"><?=number_format($row['lot_weight']*$row['lot_price_sale'],2)?></td>
                 <td class="text-center"><?=($row['lot_transfer_date']!="0000-00-00")?date_format(date_create($row['lot_transfer_date']),"d/m/Y"):""?></td>
                 <td class="text-center <?php if($row['lot_transfer'] == 2){echo "alert-success";}?>"><?=$transferStatus[$row['lot_transfer']]?></td>
             </tr>

@@ -26,9 +26,15 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="staticEmail" class="col-sm-2 col-form-label text-right">ราคา</label>
+            <label for="staticEmail" class="col-sm-2 col-form-label text-right">ราคาซื้อ</label>
             <div class="col-sm-5">
                 <input type="number" step="0.01" class="form-control" name="lot_price_buy" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label text-right">ราคาขาย</label>
+            <div class="col-sm-5">
+                <input type="number" step="0.01" class="form-control" name="lot_price_sale" required>
             </div>
         </div>
         <div class="form-group row">

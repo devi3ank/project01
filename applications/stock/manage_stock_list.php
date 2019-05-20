@@ -37,7 +37,7 @@
                 <th class="text-center" style="width: 150px">ราคาซื้อ</th>
                 <th class="text-center" style="width: 150px">ยอดจริง</th>
                 <th class="text-center" style="width: 180px"></th>
-                <th class="text-center" style="width: 50px"></th>
+                <th class="text-center" style="width: 100px"></th>
             </tr>
         </thead>
         <tbody>
@@ -49,14 +49,14 @@
             while($row = $result->fetch_assoc()) {
         ?>
             <tr>
-                <td class="text-center"><?=$i?></td>
+                <td class="text-center"><?=$row['lot_id']?></td>
                 <td class="text-center"><?=date_format(date_create($row['lot_date']),"d/m/Y")?></td>
                 <td class="text-center"><?=$statusLot[$row['lot_status']]?></td>
                 <td class="text-right"><?=number_format($row['lot_weight'],2)?></td>
                 <td class="text-right"><?=number_format($row['lot_price_buy'],2)?></td>
                 <td class="text-right"><?=number_format($row['lot_weight']*$row['lot_price_buy'],2)?></td>
                 <td class="text-center <?php if ($row['lot_transfer'] == 2) {echo "alert-success";}?>">
-                    <?php if ($row['lot_status'] == 1 && $row['lot_transfer'] == 1) { ?>
+                    <?php if (($row['lot_status'] == 1 || $row['lot_status'] == 4) && $row['lot_transfer'] == 1) { ?>
                         <a href="?app=stock&action=manage_stock_sale&id=<?=$id?>&lot_id=<?=$row['lot_id']?>" class="btn btn-sm btn-secondary" title="ขายสินค้า"><i class="fas fa-hand-holding-usd"></i></a>
                     <?php } elseif($row['lot_status'] == 2 && $row['lot_transfer'] == 1) { ?>
                         <!-- <a href="?app=stock&action=manage_stock_transfer&id=<?=$id?>&lot_id=<?=$row['lot_id']?>" class="btn btn-sm btn-success" title="ส่งสินค้า" onclick="return confirm('ยืนยันการส่งสินค้า ?')"><i class="fas fa-exchange-alt"></i></a> -->
@@ -65,8 +65,11 @@
                         echo "ส่งสินค้าเรียบร้อย";
                     } ?>
                 </td>
-                <td class="text-right">
-                    <a href="?app=stock&action=manage_stock_delete&id=<?=$id?>&lot_id=<?=$row['lot_id']?>" class="btn btn-danger btn-sm" onclick="return confirm('ยืนยันการลบข้อมูล');"><i class="far fa-trash-alt"></i></a>
+                <td class="text-center">
+                    <?php if ($row['lot_status'] != '5') { ?>
+                    <a href="?app=stock&action=manage_stock_confirm_pay&id=<?=$id?>&lot_id=<?=$row['lot_id']?>" class="btn btn-success btn-sm" onclick="return confirm('ยืนยันการชำระเงิน');" title="ยืนยันการชำระเงิน"><i class="fas fa-money-bill-wave"></i></a>
+                    <?php } ?>
+                    <a href="?app=stock&action=manage_stock_delete&id=<?=$id?>&lot_id=<?=$row['lot_id']?>" class="btn btn-danger btn-sm" onclick="return confirm('ยืนยันการลบข้อมูล');" title="ลบข้อมูล"><i class="far fa-trash-alt"></i></a>
                 </td>
             </tr>
         <?php $i++;}} else { ?>
@@ -101,6 +104,12 @@
                 <label for="inputPassword" class="col-sm-4 col-form-label text-right">ค่ากรรมกร/ค่าโอน</label>
                 <div class="col-sm-8">
                     <input type="number" step="0.01" class="form-control" name="lot_other" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPassword" class="col-sm-4 col-form-label text-right">หมายเหตุ</label>
+                <div class="col-sm-8">
+                    <input type="number" step="0.01" class="form-control" name="lot_note_transfer" required>
                 </div>
             </div>
             <div class="form-group row">

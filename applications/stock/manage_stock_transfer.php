@@ -5,6 +5,7 @@
     $data['lot_transfer_date'] = $_POST['lot_transfer_date'];
     $data['lot_other'] = $_POST['lot_other'];
     $data['lot_transfer'] = 2;
+    $data['lot_note_transfer'] = $_POST['lot_note_transfer'];
     
     update_db("lot_tb", $data, "lot_id = '$lot_id'");
     //dieArray($data);

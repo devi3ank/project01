@@ -109,7 +109,7 @@
             <div class="form-group row">
                 <label for="inputPassword" class="col-sm-4 col-form-label text-right">หมายเหตุ</label>
                 <div class="col-sm-8">
-                    <input type="number" step="0.01" class="form-control" name="lot_note_transfer" required>
+                    <input type="text" class="form-control" name="lot_note_transfer" required>
                 </div>
             </div>
             <div class="form-group row">

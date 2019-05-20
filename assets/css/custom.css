@@ -62,3 +62,12 @@ body {
     background-color: #003333;
     color: #FFF;
 }
+
+.detail-main {
+    width: 100%;
+    height: calc(100vh - 56px);
+    background-image: url('../images/maxresdefault.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}

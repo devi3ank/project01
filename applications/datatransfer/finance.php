@@ -166,6 +166,10 @@ foreach ($arrChart AS $k=>$v) {
                 <td class="text-right text-danger font-weight-bold"><?=number_format($otherFinance,2)?></td>
                 <td class="text-right text-danger font-weight-bold"><?=number_format($totalFinance,2)?></td>
             </tr>
+            <tr>
+                <td class="text-right font-weight-bold" colspan="6">กำไรสุทธิ</td>
+                <td class="text-right text-danger font-weight-bold"><?=number_format($saleFinance - $buyFinance,2)?></td>
+            </tr>
         <?php } else { ?>
             <tr>
                 <td class="text-center" colspan="7">ไม่มีข้อมูล</td>

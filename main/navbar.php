@@ -21,7 +21,7 @@
 <div class="sidebar">
     <ul class="sidebar-list">
     <?php if ($_SESSION['user_type'] == 1) { ?>
-        <li class="<?php if($action == 'stock'){echo "list";}?>">
+        <li class="<?php if($action == 'list'){echo "active";}?>">
             <a href="?app=detail&action=list"><i class="fas fa-angle-double-right"></i> จัดการข้อมูลเว็ปไซต์</a>
         </li>
         <li class="<?php if($action == 'products_list' || $action == 'products_add' || $action == 'products_edit'){echo "active";}?>">

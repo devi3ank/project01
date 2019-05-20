@@ -68,6 +68,7 @@
                 </select>
             </div>
         </div>
+        <?php if ($row['user_id'] != '1') { ?>
         <div class="form-group row">
             <label for="inputPassword" class="col-sm-2 col-form-label text-right">ประเภทผู้ใช้ระบบ : </label>
             <div class="col-sm-5">
@@ -78,6 +79,7 @@
                 </select>
             </div>
         </div>
+        <?php } ?>
         <div class="form-group row">
             <label for="inputPassword" class="col-sm-2 col-form-label text-right">สถานะ : </label>
             <div class="col-sm-5">

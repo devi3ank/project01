@@ -23,10 +23,12 @@
 
     $mpdf = new \Mpdf\Mpdf([
         'default_font_size' => 14,
-        'default_font' => 'thsarabun'
+        'default_font' => 'thsarabun',
+        'margin_top' => 10
     ]);
 
-    $html = '<div style="text-align:center; font-size: 28pt; font-weight: bold;">หจท. สืบ เกษตรไท</div>';
+    $html = '<div style="text-align:center; font-size: 28pt; font-weight: bold;"><img src="../assets/images/logo.jpg" height="84px"></div>';
+    $html .= '<div style="text-align:center; font-size: 28pt; font-weight: bold;">หจท. สืบ เกษตรไท</div>';
     $html .= '<div style="text-align:center;">เลขที่ 333/1 หมู่ที่ 2 ต.หนองจ๊อม อ.สันทราย จ.เชียงใหม่ 50210</div>';
     $html .= '<div style="text-align:center;">โทร. 052-000-666</div>';
     $html .= '<div style="text-align:center; font-size: 20pt; font-weight: bold;">ใบเสร็จรับเงิน</div>';
@@ -55,24 +57,6 @@
                 <td style="text-align:center;">กก.</td>
                 <td style="text-align:right;">'.$data['lot_price_sale'].'</td>
                 <td style="text-align:right;">'.number_format($data['lot_weight']*$data['lot_price_sale'],2).'</td>
-            </tr>
-            <tr>
-                <td style="height: 16px;" colspan="7"></td>
-            </tr>
-            <tr>
-                <td style="height: 16px;" colspan="7"></td>
-            </tr>
-            <tr>
-                <td style="height: 16px;" colspan="7"></td>
-            </tr>
-            <tr>
-                <td style="height: 16px;" colspan="7"></td>
-            </tr>
-            <tr>
-                <td style="height: 16px;" colspan="7"></td>
-            </tr>
-            <tr>
-                <td style="height: 16px;" colspan="7"></td>
             </tr>
             <tr>
                 <td style="height: 16px;" colspan="7"></td>

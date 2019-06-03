@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 20, 2019 at 08:10 AM
+-- Generation Time: Jun 03, 2019 at 11:16 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 5.6.40
 
@@ -51,16 +51,9 @@ CREATE TABLE `document_tb` (
   `doc_description` text COLLATE utf8_unicode_ci NOT NULL COMMENT 'รายละเอียด',
   `doc_tostore` int(11) NOT NULL COMMENT 'ร้านที่เห็นได้',
   `doc_status` int(1) NOT NULL COMMENT 'สถานะ 1.แสดง 2.ไม่แสดง 3.ลบ',
-  `doc_fitby` int(11) NOT NULL COMMENT 'ผู้บันทึก',
+  `doc_fiyby` int(11) NOT NULL COMMENT 'ผู้บันทึก',
   `doc_fitdate` datetime NOT NULL COMMENT 'วันที่บันทึก'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Dumping data for table `document_tb`
---
-
-INSERT INTO `document_tb` (`doc_id`, `doc_name`, `doc_file`, `doc_description`, `doc_tostore`, `doc_status`, `doc_fitby`, `doc_fitdate`) VALUES
-(1, 'ทดสอบ', 'HWLd3sYX49IxQeOVYqCA.pdf', 'ทดสอบ', 1, 1, 1, '2019-05-13 04:48:34');
 
 -- --------------------------------------------------------
 
@@ -97,11 +90,41 @@ CREATE TABLE `lot_tb` (
 --
 
 INSERT INTO `lot_tb` (`lot_id`, `products_id`, `lot_date`, `lot_weight`, `lot_price_buy`, `store_buy_id`, `lot_note_buy`, `lot_price_sale`, `lot_date_sale`, `store_sale_id`, `lot_note_sale`, `store_order`, `lot_order_date`, `lot_status`, `lot_transfer`, `lot_transfer_date`, `lot_note_transfer`, `lot_other`, `lot_payment`, `lot_fitby`, `lot_fitdate`) VALUES
-(1, 3, '2019-05-12', '350.00', '8.20', 2, '', '9.00', '2019-05-12', 1, '', 0, '0000-00-00 00:00:00', 5, 2, '2019-05-12', '', '567.00', '2019-05-20', 1, '2019-05-12 05:07:59'),
-(2, 3, '2019-05-12', '30677.00', '8.20', 1, '', '9.00', '2019-05-12', 2, '', 0, '0000-00-00 00:00:00', 2, 2, '2019-05-12', '', '1058.00', '0000-00-00', 1, '2019-05-12 05:22:24'),
-(3, 3, '2019-05-12', '10000.00', '8.20', 2, '', '9.00', '2019-05-12', 1, '', 0, '0000-00-00 00:00:00', 2, 2, '2019-05-12', '', '1300.00', '0000-00-00', 1, '2019-05-12 05:54:24'),
-(4, 3, '2019-05-13', '500.00', '8.30', 2, '', '0.00', '0000-00-00', 0, '', 0, '0000-00-00 00:00:00', 3, 1, '0000-00-00', '', '0.00', '0000-00-00', 1, '2019-05-12 16:34:12'),
-(5, 3, '2019-05-18', '4000.00', '8.20', 2, '', '9.00', '2019-05-20', 2, '', 2, '2019-05-20 05:40:49', 2, 2, '2019-05-20', '', '123.00', '0000-00-00', 1, '2019-05-18 11:54:33');
+(8, 3, '2019-06-03', '2345.00', '8.20', 2, '', '9.00', '2019-06-03', 2, '', 2, '2019-06-03 06:25:25', 5, 2, '2019-06-03', '-', '123.00', '2019-06-03', 1, '2019-06-03 06:25:17');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_tb`
+--
+
+CREATE TABLE `order_tb` (
+  `order_id` int(11) NOT NULL,
+  `products_id` int(11) NOT NULL,
+  `store_id` int(11) NOT NULL,
+  `order_weight` decimal(10,2) NOT NULL,
+  `store_buy_id` int(11) NOT NULL COMMENT 'ร้านที่เราซื้อสินค้า',
+  `order_price_buy` decimal(10,2) NOT NULL,
+  `order_date_buy` datetime NOT NULL,
+  `order_price_sale` decimal(10,2) NOT NULL,
+  `order_price_transfer` decimal(10,2) NOT NULL,
+  `order_date_transfer` datetime NOT NULL,
+  `order_status` int(2) NOT NULL COMMENT 'สถานะ 1.รออนุมัติการสั่งซื้อ 2.อนุมัติการสั่งซื้อ 3.กำลังเตรียมสินค้า',
+  `order_fitdate_cancel` datetime NOT NULL,
+  `order_fitdate` datetime NOT NULL,
+  `order_fitby` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `order_tb`
+--
+
+INSERT INTO `order_tb` (`order_id`, `products_id`, `store_id`, `order_weight`, `store_buy_id`, `order_price_buy`, `order_date_buy`, `order_price_sale`, `order_price_transfer`, `order_date_transfer`, `order_status`, `order_fitdate_cancel`, `order_fitdate`, `order_fitby`) VALUES
+(1, 3, 2, '2000.00', 0, '0.00', '0000-00-00 00:00:00', '0.00', '0.00', '0000-00-00 00:00:00', 0, '2019-06-03 06:03:39', '2019-06-03 05:52:47', 2),
+(2, 3, 2, '350.00', 3, '8.20', '2019-06-03 09:24:42', '10.00', '150.00', '2019-06-03 00:00:00', 6, '0000-00-00 00:00:00', '2019-06-03 05:58:06', 2),
+(3, 3, 2, '2000.00', 3, '8.20', '2019-06-03 10:35:30', '12.00', '120.00', '2019-06-03 00:00:00', 6, '0000-00-00 00:00:00', '2019-06-03 10:34:41', 2),
+(4, 3, 2, '1234.00', 3, '8.20', '2019-06-03 10:41:21', '9.00', '150.00', '2019-06-03 00:00:00', 6, '0000-00-00 00:00:00', '2019-06-03 10:38:24', 2),
+(5, 3, 2, '5000.00', 3, '8.00', '2019-06-03 11:12:14', '10.00', '0.00', '0000-00-00 00:00:00', 6, '0000-00-00 00:00:00', '2019-06-03 11:11:53', 2);
 
 -- --------------------------------------------------------
 
@@ -142,13 +165,6 @@ CREATE TABLE `quotation_tb` (
   `quotation_fitdate` datetime NOT NULL COMMENT 'วันที่บันทึก'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `quotation_tb`
---
-
-INSERT INTO `quotation_tb` (`quotation_id`, `products_id`, `quotation_weight`, `quotation_price`, `quotation_status`, `quotation_store`, `quotation_fitby`, `quotation_fitdate`) VALUES
-(1, 3, '120.00', '7.90', 2, 2, 3, '2019-05-20 07:59:06');
-
 -- --------------------------------------------------------
 
 --
@@ -171,7 +187,8 @@ CREATE TABLE `store_tb` (
 
 INSERT INTO `store_tb` (`store_id`, `store_name`, `store_address`, `store_phone`, `store_tax`, `store_type`, `store_status`) VALUES
 (1, 'หจก. สืบ เกษตรไท', 'เลขที่ 333/1 หมู่ที่ 2 ต.หนองจ๊อม อ.สันทราย จ.เชียงใหม่ 50210', ' 052-000-666', '1234567890', 1, 1),
-(2, 'บจก. ไปโอเจน ฟิดมิลล์', '75/1 หมู่ 4 ต.บ้านกลาง อ.เมือง จ.ลำพูน 51000', '-', '5015544000315', 2, 1);
+(2, 'บจก. ไปโอเจน ฟิดมิลล์', '75/1 หมู่ 4 ต.บ้านกลาง อ.เมือง จ.ลำพูน 51000', '-', '5015544000315', 2, 1),
+(3, 'บจก. ไปโอเจน ฟิดมิลล์2', '75/1 หมู่ 4 ต.บ้านกลาง อ.เมือง จ.ลำพูน 51000', '000', '5015544000315', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -198,7 +215,8 @@ CREATE TABLE `user_tb` (
 INSERT INTO `user_tb` (`user_id`, `user_username`, `user_password`, `user_fullname`, `user_email`, `user_phone`, `user_store`, `user_type`, `user_status`) VALUES
 (1, 'admin', 'admin1234', 'ณัฐพงศ์ พลพัชรวัฒน์', 'test@email.com', '-', 1, 1, 1),
 (2, 'user01', '1234', 'user01', 'ddd@ddd.com', '-', 2, 3, 1),
-(3, 'user02', '1234', 'user02', 'sfasdf@asdasd', '000000', 2, 4, 1);
+(3, 'user02', '1234', 'user02', 'sfasdf@asdasd', '000000', 2, 4, 1),
+(4, 'user03', '1234', 'Mean Phonphatcharawat', 'sfasdf@asdasd', '000000', 3, 4, 1);
 
 --
 -- Indexes for dumped tables
@@ -208,19 +226,30 @@ INSERT INTO `user_tb` (`user_id`, `user_username`, `user_password`, `user_fullna
 -- Indexes for table `detail_tb`
 --
 ALTER TABLE `detail_tb`
-  ADD PRIMARY KEY (`detail_id`);
+  ADD PRIMARY KEY (`detail_id`),
+  ADD KEY `detail_fitby` (`detail_fitby`);
 
 --
 -- Indexes for table `document_tb`
 --
 ALTER TABLE `document_tb`
-  ADD PRIMARY KEY (`doc_id`);
+  ADD PRIMARY KEY (`doc_id`),
+  ADD KEY `doc_fiyby` (`doc_fiyby`);
 
 --
 -- Indexes for table `lot_tb`
 --
 ALTER TABLE `lot_tb`
-  ADD PRIMARY KEY (`lot_id`);
+  ADD PRIMARY KEY (`lot_id`),
+  ADD KEY `lot_fitby` (`lot_fitby`),
+  ADD KEY `products_id` (`products_id`),
+  ADD KEY `store_buy_id` (`store_buy_id`);
+
+--
+-- Indexes for table `order_tb`
+--
+ALTER TABLE `order_tb`
+  ADD PRIMARY KEY (`order_id`);
 
 --
 -- Indexes for table `products_tb`
@@ -232,7 +261,8 @@ ALTER TABLE `products_tb`
 -- Indexes for table `quotation_tb`
 --
 ALTER TABLE `quotation_tb`
-  ADD PRIMARY KEY (`quotation_id`);
+  ADD PRIMARY KEY (`quotation_id`),
+  ADD KEY `quotation_fitby` (`quotation_fitby`);
 
 --
 -- Indexes for table `store_tb`
@@ -266,7 +296,13 @@ ALTER TABLE `document_tb`
 -- AUTO_INCREMENT for table `lot_tb`
 --
 ALTER TABLE `lot_tb`
-  MODIFY `lot_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `lot_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `order_tb`
+--
+ALTER TABLE `order_tb`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `products_tb`
@@ -284,13 +320,42 @@ ALTER TABLE `quotation_tb`
 -- AUTO_INCREMENT for table `store_tb`
 --
 ALTER TABLE `store_tb`
-  MODIFY `store_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `store_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `user_tb`
 --
 ALTER TABLE `user_tb`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `detail_tb`
+--
+ALTER TABLE `detail_tb`
+  ADD CONSTRAINT `detail_tb_ibfk_1` FOREIGN KEY (`detail_fitby`) REFERENCES `user_tb` (`user_id`);
+
+--
+-- Constraints for table `document_tb`
+--
+ALTER TABLE `document_tb`
+  ADD CONSTRAINT `document_tb_ibfk_1` FOREIGN KEY (`doc_fiyby`) REFERENCES `user_tb` (`user_id`);
+
+--
+-- Constraints for table `lot_tb`
+--
+ALTER TABLE `lot_tb`
+  ADD CONSTRAINT `lot_tb_ibfk_1` FOREIGN KEY (`lot_fitby`) REFERENCES `user_tb` (`user_id`),
+  ADD CONSTRAINT `lot_tb_ibfk_2` FOREIGN KEY (`products_id`) REFERENCES `products_tb` (`products_id`);
+
+--
+-- Constraints for table `quotation_tb`
+--
+ALTER TABLE `quotation_tb`
+  ADD CONSTRAINT `quotation_tb_ibfk_1` FOREIGN KEY (`quotation_fitby`) REFERENCES `user_tb` (`user_id`) ON DELETE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -10,29 +10,29 @@ if (empty($_POST['date_start']) && empty($_POST['date_end'])) {
 
 $result = select_db("
     SELECT
-        lot_tb.*,
+        order_tb.*,
         store_tb.store_name
     FROM
-        lot_tb
-    INNER JOIN store_tb ON lot_tb.store_buy_id = store_tb.store_id
+        order_tb
+    INNER JOIN store_tb ON order_tb.store_buy_id = store_tb.store_id
     WHERE
-        lot_tb.lot_status  != '3' AND
-        lot_tb.lot_fitdate BETWEEN '$dateStart 00:00:00' AND '$dateEnd 23:59:59'
+        order_tb.order_status  >= '2' AND
+        order_tb.order_fitdate BETWEEN '$dateStart 00:00:00' AND '$dateEnd 23:59:59'
     ORDER BY 
-        lot_tb.lot_fitdate ASC
+        order_tb.order_fitdate ASC
 ");
 
 $resultChartsBuy = select_db("
     SELECT 
         store_tb.store_id,
         store_tb.store_name,
-        SUM(lot_weight * lot_price_buy) AS buy
+        SUM(order_weight * order_price_buy) AS buy
     FROM 
-        lot_tb 
-    INNER JOIN store_tb ON lot_tb.store_buy_id = store_tb.store_id 
+        order_tb 
+    INNER JOIN store_tb ON order_tb.store_buy_id = store_tb.store_id 
     WHERE
-        lot_tb.lot_status  != '3' AND
-        lot_tb.lot_fitdate BETWEEN '$dateStart 00:00:00' AND '$dateEnd 23:59:59'
+        order_tb.order_status  >= '3' AND
+        order_tb.order_fitdate BETWEEN '$dateStart 00:00:00' AND '$dateEnd 23:59:59'
     GROUP BY
         store_tb.store_name
 ");
@@ -41,13 +41,13 @@ $resultChartsSale = select_db("
     SELECT 
         store_tb.store_id,
         store_tb.store_name,
-        SUM(lot_weight * lot_price_sale) AS sale
+        SUM(order_weight * order_price_sale) AS sale
     FROM 
-        lot_tb 
-    INNER JOIN store_tb ON lot_tb.store_sale_id = store_tb.store_id 
+        order_tb 
+    INNER JOIN store_tb ON order_tb.store_id = store_tb.store_id 
     WHERE
-        lot_tb.lot_status  != '3' AND
-        lot_tb.lot_fitdate BETWEEN '$dateStart 00:00:00' AND '$dateEnd 23:59:59'
+        order_tb.order_status  >= '3' AND
+        order_tb.order_fitdate BETWEEN '$dateStart 00:00:00' AND '$dateEnd 23:59:59'
     GROUP BY
         store_tb.store_name
 ");
@@ -141,20 +141,20 @@ foreach ($arrChart AS $k=>$v) {
                 $otherFinance   = 0;
                 $totalFinance   = 0;
                 while($row = $result->fetch_assoc()) {
-                    $weightFinance  += $row['lot_weight'];
-                    $buyFinance     += $row['lot_weight']*$row['lot_price_buy'];
-                    $saleFinance    += $row['lot_weight']*$row['lot_price_sale'];
-                    $otherFinance   += $row['lot_other'];
-                    $totalFinance   += ($row['lot_weight']*$row['lot_price_sale']) - $row['lot_other'];
+                    $weightFinance  += $row['order_weight'];
+                    $buyFinance     += $row['order_weight']*$row['order_price_buy'];
+                    $saleFinance    += $row['order_weight']*$row['order_price_sale'];
+                    $otherFinance   += $row['order_price_transfer'];
+                    $totalFinance   += ($row['order_weight']*$row['order_price_sale']) - $row['order_price_transfer'];
         ?>
             <tr>
-                <td class="text-center"><?=$row['lot_id']?></td>
-                <td class="text-center"><?=date_format(date_create($row['lot_date']),"d/m/Y")?></td>
-                <td class="text-right"><?=number_format($row['lot_weight'],2)?></td>
-                <td class="text-right"><?=number_format($row['lot_weight']*$row['lot_price_buy'],2)?></td>
-                <td class="text-right"><?=number_format($row['lot_weight']*$row['lot_price_sale'],2)?></td>
-                <td class="text-right"><?=number_format($row['lot_other'],2)?></td>
-                <td class="text-right"><?=number_format(($row['lot_weight']*$row['lot_price_sale']) - $row['lot_other'],2)?></td>
+                <td class="text-center"><?=$row['order_id']?></td>
+                <td class="text-center"><?=date_format(date_create($row['order_fitdate']),"d/m/Y")?></td>
+                <td class="text-right"><?=number_format($row['order_weight'],2)?></td>
+                <td class="text-right"><?=number_format($row['order_weight']*$row['order_price_buy'],2)?></td>
+                <td class="text-right"><?=number_format($row['order_weight']*$row['order_price_sale'],2)?></td>
+                <td class="text-right"><?=number_format($row['order_price_transfer'],2)?></td>
+                <td class="text-right"><?=number_format(($row['order_weight']*$row['order_price_sale']) - $row['order_price_transfer'],2)?></td>
             </tr>
         <?php } ?>
             <tr>

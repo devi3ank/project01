@@ -11,16 +11,16 @@
 
     $result = select_db("
         SELECT
-            lot_tb.*,
+            order_tb.*,
             store_tb.store_name
         FROM
-            lot_tb
-        INNER JOIN store_tb ON lot_tb.store_buy_id = store_tb.store_id
+            order_tb
+        INNER JOIN store_tb ON order_tb.store_buy_id = store_tb.store_id
         WHERE
-            lot_tb.lot_status  != '3' AND
-            lot_tb.lot_date BETWEEN '$dateStart 00:00:00' AND '$dateEnd 23:59:59'
+            order_tb.order_status  >= '3' AND
+            order_tb.order_date_buy BETWEEN '$dateStart 00:00:00' AND '$dateEnd 23:59:59'
         ORDER BY 
-            lot_tb.lot_date ASC
+            order_tb.order_date_buy ASC
     ");
 ?>
 
@@ -55,11 +55,11 @@
         ?>
             <tr>
                 <td class="text-center"><?=$i?></td>
-                <td class="text-center"><?=date_format(date_create($row['lot_date']),"d/m/Y")?></td>
+                <td class="text-center"><?=date_format(date_create($row['order_date_buy']),"d/m/Y")?></td>
                 <td><?=$row['store_name']?></td>
-                <td class="text-right"><?=number_format($row['lot_price_buy'],2)?></td>
-                <td class="text-right"><?=number_format($row['lot_weight'],2)?></td>
-                <td class="text-right"><?=number_format($row['lot_weight']*$row['lot_price_buy'],2)?></td>
+                <td class="text-right"><?=number_format($row['order_price_buy'],2)?></td>
+                <td class="text-right"><?=number_format($row['order_weight'],2)?></td>
+                <td class="text-right"><?=number_format($row['order_weight']*$row['order_price_buy'],2)?></td>
             </tr>
         <?php $i++;}} else { ?>
             <tr>

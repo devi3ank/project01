@@ -12,46 +12,44 @@
     if ($typeReport == 1) {
         $sql = "
             SELECT
-                lot_tb.*,
+                order_tb.*,
                 store_tb.store_name
             FROM
-                lot_tb
-            INNER JOIN store_tb ON lot_tb.store_buy_id = store_tb.store_id
+                order_tb
+            INNER JOIN store_tb ON order_tb.store_buy_id = store_tb.store_id
             WHERE
-                lot_tb.lot_status != '3' AND
-                lot_tb.lot_date BETWEEN '$dateStart 00:00:00' AND '$dateEnd 23:59:59'
+                order_tb.order_status >= 3 AND
+                order_tb.order_date_buy BETWEEN '$dateStart 00:00:00' AND '$dateEnd 23:59:59'
             ORDER BY 
-                lot_tb.lot_id ASC
+                order_tb.order_id ASC
         ";
     } elseif($typeReport == 2) {
         $sql = "
             SELECT
-                lot_tb.*,
+                order_tb.*,
                 store_tb.store_name
             FROM
-                lot_tb
-            INNER JOIN store_tb ON lot_tb.store_sale_id = store_tb.store_id
+                order_tb
+            INNER JOIN store_tb ON order_tb.store_id = store_tb.store_id
             WHERE
-                lot_tb.lot_transfer = '2' AND
-                lot_status != '3' AND
-                lot_tb.lot_transfer_date BETWEEN '$dateStart 00:00:00' AND '$dateEnd 23:59:59'
+                order_tb.order_status >= '4' AND
+                order_tb.order_date_transfer BETWEEN '$dateStart 00:00:00' AND '$dateEnd 23:59:59'
             ORDER BY 
-                lot_tb.lot_id ASC
+                order_tb.order_id ASC
         ";
     } elseif($typeReport == 3) {
         $sql = "
             SELECT
-                lot_tb.*,
+                order_tb.*,
                 store_tb.store_name
             FROM
-                lot_tb
-            INNER JOIN store_tb ON lot_tb.store_sale_id = store_tb.store_id
+                order_tb
+            INNER JOIN store_tb ON order_tb.store_id = store_tb.store_id
             WHERE
-                lot_tb.lot_transfer = '2' AND
-                lot_status = '5' AND
-                lot_tb.lot_payment BETWEEN '$dateStart 00:00:00' AND '$dateEnd 23:59:59'
+                order_tb.order_status >= '5' AND
+                order_tb.order_fitdate BETWEEN '$dateStart 00:00:00' AND '$dateEnd 23:59:59'
             ORDER BY 
-                lot_tb.lot_id ASC
+                order_tb.order_id ASC
         ";
     }
     
@@ -97,23 +95,23 @@
                 while($row = $result->fetch_assoc()) {
         ?>
             <tr>
-                <td class="text-center"><?=$row['lot_id']?></td>
-                <td class="text-center"><?=date_format(date_create($row['lot_date']),"d/m/Y")?></td>
+                <td class="text-center"><?=$row['order_id']?></td>
+                <td class="text-center"><?=date_format(date_create($row['order_date_buy']),"d/m/Y")?></td>
                 <td><?=$row['store_name']?></td>
-                <td class="text-right"><?=number_format($row['lot_price_buy'],2)?></td>
-                <td class="text-right"><?=number_format($row['lot_weight'],2)?></td>
-                <td class="text-right"><?=number_format($row['lot_weight']*$row['lot_price_buy'],2)?></td>
+                <td class="text-right"><?=number_format($row['order_price_buy'],2)?></td>
+                <td class="text-right"><?=number_format($row['order_weight'],2)?></td>
+                <td class="text-right"><?=number_format($row['order_weight']*$row['order_price_buy'],2)?></td>
                 <td class="text-center">
                     <?php if ($typeReport == 1) { ?>
-                    <a href="<?=$domain?>/report/report_buy.php?id=<?=$row['lot_id']?>" title="พิมพ์รายงานใบสั่งสินค้า" class="btn btn-warning btn-sm" target="_blank">
+                    <a href="<?=$domain?>/report/report_buy.php?id=<?=$row['order_id']?>" title="พิมพ์รายงานใบสั่งสินค้า" class="btn btn-warning btn-sm" target="_blank">
                         <i class="fas fa-print"></i>
                     </a>
                     <?php } elseif($typeReport == 2) { ?>
-                    <a href="<?=$domain?>/report/report_transfer.php?id=<?=$row['lot_id']?>" title="พิมพ์รายงานใบส่งสินค้า/ใบแจ้งหนี้" class="btn btn-warning btn-sm" target="_blank">
+                    <a href="<?=$domain?>/report/report_transfer.php?id=<?=$row['order_id']?>" title="พิมพ์รายงานใบส่งสินค้า/ใบแจ้งหนี้" class="btn btn-warning btn-sm" target="_blank">
                         <i class="fas fa-print"></i>
                     </a>
                     <?php } elseif($typeReport == 3) { ?>
-                    <a href="<?=$domain?>/report/report_payment.php?id=<?=$row['lot_id']?>" title="พิมพ์รายงานใบส่งสินค้า/ใบแจ้งหนี้" class="btn btn-warning btn-sm" target="_blank">
+                    <a href="<?=$domain?>/report/report_payment.php?id=<?=$row['order_id']?>" title="พิมพ์รายงานใบส่งสินค้า/ใบแจ้งหนี้" class="btn btn-warning btn-sm" target="_blank">
                         <i class="fas fa-print"></i>
                     </a>
                     <?php } ?>

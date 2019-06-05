@@ -29,7 +29,7 @@
     if ($product['products_stock'] < $order['order_weight']) {
   ?>
     <span class="text-danger font-weight-bold" style="font-size: 28px;">ไม่สามารถสั่งซื้อสินค้าได้ เนื่องสินค้าในคลังมีน้อยกว่าความต้องการของลูกค้า <br>
-    กรุณาสั่งซื้อสินค้าจากผู้ขายก่อน</span> <a href="?app=">คลิก !!</a>
+    กรุณาสั่งซื้อสินค้าจากผู้ขายก่อน</span> <a href="?app=orderbuy&action=list_buy">คลิก !!</a>
   <?php } else { ?>
     <form action="?app=order&action=order_confirm_buy&id=<?=$id?>&status=3" method="POST">
       <div class="form-group row">

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2019 at 11:16 AM
+-- Generation Time: Jun 05, 2019 at 09:01 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 5.6.40
 
@@ -95,6 +95,30 @@ INSERT INTO `lot_tb` (`lot_id`, `products_id`, `lot_date`, `lot_weight`, `lot_pr
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `order_buy_tb`
+--
+
+CREATE TABLE `order_buy_tb` (
+  `ob_id` int(11) NOT NULL,
+  `store_id` int(11) NOT NULL,
+  `products_id` int(11) NOT NULL,
+  `ob_weight` decimal(10,0) NOT NULL,
+  `ob_price` decimal(10,2) NOT NULL,
+  `ob_status` int(11) NOT NULL,
+  `ob_fitdate` datetime NOT NULL,
+  `ob_fitby` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `order_buy_tb`
+--
+
+INSERT INTO `order_buy_tb` (`ob_id`, `store_id`, `products_id`, `ob_weight`, `ob_price`, `ob_status`, `ob_fitdate`, `ob_fitby`) VALUES
+(1, 3, 3, '5000', '8.20', 2, '2019-06-05 19:43:18', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `order_tb`
 --
 
@@ -103,10 +127,8 @@ CREATE TABLE `order_tb` (
   `products_id` int(11) NOT NULL,
   `store_id` int(11) NOT NULL,
   `order_weight` decimal(10,2) NOT NULL,
-  `store_buy_id` int(11) NOT NULL COMMENT 'ร้านที่เราซื้อสินค้า',
-  `order_price_buy` decimal(10,2) NOT NULL,
-  `order_date_buy` datetime NOT NULL,
   `order_price_sale` decimal(10,2) NOT NULL,
+  `order_price_buy` decimal(10,2) NOT NULL,
   `order_price_transfer` decimal(10,2) NOT NULL,
   `order_date_transfer` datetime NOT NULL,
   `order_status` int(2) NOT NULL COMMENT 'สถานะ 1.รออนุมัติการสั่งซื้อ 2.อนุมัติการสั่งซื้อ 3.กำลังเตรียมสินค้า',
@@ -119,12 +141,13 @@ CREATE TABLE `order_tb` (
 -- Dumping data for table `order_tb`
 --
 
-INSERT INTO `order_tb` (`order_id`, `products_id`, `store_id`, `order_weight`, `store_buy_id`, `order_price_buy`, `order_date_buy`, `order_price_sale`, `order_price_transfer`, `order_date_transfer`, `order_status`, `order_fitdate_cancel`, `order_fitdate`, `order_fitby`) VALUES
-(1, 3, 2, '2000.00', 0, '0.00', '0000-00-00 00:00:00', '0.00', '0.00', '0000-00-00 00:00:00', 0, '2019-06-03 06:03:39', '2019-06-03 05:52:47', 2),
-(2, 3, 2, '350.00', 3, '8.20', '2019-06-03 09:24:42', '10.00', '150.00', '2019-06-03 00:00:00', 6, '0000-00-00 00:00:00', '2019-06-03 05:58:06', 2),
-(3, 3, 2, '2000.00', 3, '8.20', '2019-06-03 10:35:30', '12.00', '120.00', '2019-06-03 00:00:00', 6, '0000-00-00 00:00:00', '2019-06-03 10:34:41', 2),
-(4, 3, 2, '1234.00', 3, '8.20', '2019-06-03 10:41:21', '9.00', '150.00', '2019-06-03 00:00:00', 6, '0000-00-00 00:00:00', '2019-06-03 10:38:24', 2),
-(5, 3, 2, '5000.00', 3, '8.00', '2019-06-03 11:12:14', '10.00', '0.00', '0000-00-00 00:00:00', 6, '0000-00-00 00:00:00', '2019-06-03 11:11:53', 2);
+INSERT INTO `order_tb` (`order_id`, `products_id`, `store_id`, `order_weight`, `order_price_sale`, `order_price_buy`, `order_price_transfer`, `order_date_transfer`, `order_status`, `order_fitdate_cancel`, `order_fitdate`, `order_fitby`) VALUES
+(1, 3, 2, '2000.00', '0.00', '0.00', '0.00', '0000-00-00 00:00:00', 0, '2019-06-03 06:03:39', '2019-06-03 05:52:47', 2),
+(2, 3, 2, '350.00', '10.00', '8.20', '150.00', '2019-06-03 00:00:00', 5, '0000-00-00 00:00:00', '2019-06-03 05:58:06', 2),
+(3, 3, 2, '2000.00', '12.00', '8.20', '120.00', '2019-06-03 00:00:00', 5, '0000-00-00 00:00:00', '2019-06-03 10:34:41', 2),
+(4, 3, 2, '1234.00', '9.00', '8.20', '150.00', '2019-06-03 00:00:00', 5, '0000-00-00 00:00:00', '2019-06-03 10:38:24', 2),
+(5, 3, 2, '5000.00', '10.00', '8.20', '0.00', '0000-00-00 00:00:00', 5, '0000-00-00 00:00:00', '2019-06-03 11:11:53', 2),
+(6, 3, 2, '2000.00', '9.00', '8.20', '123.00', '2019-06-06 00:00:00', 5, '0000-00-00 00:00:00', '2019-06-05 17:35:53', 2);
 
 -- --------------------------------------------------------
 
@@ -136,6 +159,7 @@ CREATE TABLE `products_tb` (
   `products_id` int(11) NOT NULL,
   `products_code` varchar(100) COLLATE utf8_unicode_ci NOT NULL COMMENT 'รหัสสินค้า',
   `products_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL COMMENT 'ชื่อสินค้า',
+  `products_stock` decimal(10,2) NOT NULL,
   `products_status` int(1) NOT NULL DEFAULT '1' COMMENT 'สถานะ 1.ใช้งาน 2.ปิดการใช้งาน 3.ลบข้อมูล'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -143,10 +167,10 @@ CREATE TABLE `products_tb` (
 -- Dumping data for table `products_tb`
 --
 
-INSERT INTO `products_tb` (`products_id`, `products_code`, `products_name`, `products_status`) VALUES
-(1, '', 'ข้าวเหนียว', 3),
-(2, '', 'ข้าวเหนียว', 3),
-(3, '123-55', 'ข้าวเหนียว', 1);
+INSERT INTO `products_tb` (`products_id`, `products_code`, `products_name`, `products_stock`, `products_status`) VALUES
+(1, '', 'ข้าวเหนียว', '0.00', 3),
+(2, '', 'ข้าวเหนียว', '0.00', 3),
+(3, '123-55', 'ข้าวเหนียว', '3000.00', 1);
 
 -- --------------------------------------------------------
 
@@ -246,6 +270,12 @@ ALTER TABLE `lot_tb`
   ADD KEY `store_buy_id` (`store_buy_id`);
 
 --
+-- Indexes for table `order_buy_tb`
+--
+ALTER TABLE `order_buy_tb`
+  ADD PRIMARY KEY (`ob_id`);
+
+--
 -- Indexes for table `order_tb`
 --
 ALTER TABLE `order_tb`
@@ -299,10 +329,16 @@ ALTER TABLE `lot_tb`
   MODIFY `lot_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `order_buy_tb`
+--
+ALTER TABLE `order_buy_tb`
+  MODIFY `ob_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `order_tb`
 --
 ALTER TABLE `order_tb`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `products_tb`

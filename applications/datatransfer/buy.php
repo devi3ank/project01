@@ -11,16 +11,15 @@
 
     $result = select_db("
         SELECT
-            order_tb.*,
-            store_tb.store_name
+            *
         FROM
-            order_tb
-        INNER JOIN store_tb ON order_tb.store_buy_id = store_tb.store_id
+            order_buy_tb
+        INNER JOIN store_tb ON order_buy_tb.store_id = store_tb.store_id
         WHERE
-            order_tb.order_status  >= '3' AND
-            order_tb.order_date_buy BETWEEN '$dateStart 00:00:00' AND '$dateEnd 23:59:59'
+            order_buy_tb.ob_status  = '2' AND
+            order_buy_tb.ob_fitdate BETWEEN '$dateStart 00:00:00' AND '$dateEnd 23:59:59'
         ORDER BY 
-            order_tb.order_date_buy ASC
+            order_buy_tb.ob_fitdate ASC
     ");
 ?>
 
@@ -55,11 +54,11 @@
         ?>
             <tr>
                 <td class="text-center"><?=$i?></td>
-                <td class="text-center"><?=date_format(date_create($row['order_date_buy']),"d/m/Y")?></td>
+                <td class="text-center"><?=date_format(date_create($row['ob_fitdate']),"d/m/Y")?></td>
                 <td><?=$row['store_name']?></td>
-                <td class="text-right"><?=number_format($row['order_price_buy'],2)?></td>
-                <td class="text-right"><?=number_format($row['order_weight'],2)?></td>
-                <td class="text-right"><?=number_format($row['order_weight']*$row['order_price_buy'],2)?></td>
+                <td class="text-right"><?=number_format($row['ob_price'],2)?></td>
+                <td class="text-right"><?=number_format($row['ob_weight'],2)?></td>
+                <td class="text-right"><?=number_format($row['ob_weight']*$row['ob_price'],2)?></td>
             </tr>
         <?php $i++;}} else { ?>
             <tr>

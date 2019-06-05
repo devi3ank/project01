@@ -5,11 +5,11 @@
     SELECT
       *
     FROM
-      order_tb
-    INNER JOIN products_tb ON order_tb.products_id = products_tb.products_id
+      order_buy_tb
+    INNER JOIN products_tb ON order_buy_tb.products_id = products_tb.products_id
     WHERE
-      order_tb.store_buy_id = '$store' AND
-      order_tb.order_status >= '3'
+      order_buy_tb.store_id = '$store' AND
+      order_buy_tb.ob_status > '0'
   ");
 ?>
 
@@ -36,13 +36,13 @@
         <tr>
             <td class="text-center"><?=$i?></td>
             <td><?=$row['products_name']?></td>
-            <td class="text-right"><?=number_format($row['order_weight'],2)?></td>
-            <td class="text-right"><?=number_format($row['order_price_buy'],2)?></td>
-            <td class="text-right"><?=number_format($row['order_weight']*$row['order_price_buy'],2)?></td>
-            <td class="text-center"><?=($row['order_status']==3)?'ยังไม่ได้ยืนยันการขาย':'ยืนยันการขายแล้ว'?></td>
+            <td class="text-right"><?=number_format($row['ob_weight'],2)?></td>
+            <td class="text-right"><?=number_format($row['ob_price'],2)?></td>
+            <td class="text-right"><?=number_format($row['ob_weight']*$row['ob_price'],2)?></td>
+            <td class="text-center"><?=($row['ob_status']==1)?'ยังไม่ได้ยืนยันการขาย':'<span class="text-success">ยืนยันการขายแล้ว</span>'?></td>
             <td class="text-center">
-              <?php if ($row['order_status']==3) { ?>
-              <a href="?app=order&action=order_confirm_buy&id=<?=$row['order_id']?>&status=4" class="btn btn-success btn-sm" onclick="return confirm('ยืนยันขายสินค้า');"><i class="fas fa-calendar-check"></i></a>
+              <?php if ($row['ob_status']==1) { ?>
+              <a href="?app=orderbuy&action=orderbuy_confirm&id=<?=$row['ob_id']?>" class="btn btn-success btn-sm" onclick="return confirm('ยืนยันขายสินค้า');"><i class="fas fa-calendar-check"></i></a>
               <?php } ?>
             </td>
         </tr>

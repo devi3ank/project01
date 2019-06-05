@@ -4,18 +4,11 @@
 
     $result = select_db("
         SELECT
-            products_tb.products_name,
-            SUM(lot_tb.lot_weight) AS weight
+            *
         FROM
-            lot_tb
-        INNER JOIN products_tb ON lot_tb.products_id = products_tb.products_id
+            products_tb
         WHERE
-            products_tb.products_name LIKE '$search%' AND
-            lot_tb.lot_status = 1
-        GROUP BY
-            products_tb.products_id
-        ORDER BY 
-            products_tb.products_id ASC
+            products_tb.products_status != '3'
     ");
 ?>
 
@@ -46,7 +39,7 @@
             <tr>
                 <td class="text-center"><?=$i?></td>
                 <td><?=$row['products_name']?></td>
-                <td class="text-right"><?=number_format($row['weight'], 2)?></td>
+                <td class="text-right"><?=number_format($row['products_stock'], 2)?></td>
             </tr>
         <?php $i++;}} else { ?>
             <tr>

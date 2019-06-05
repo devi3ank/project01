@@ -39,10 +39,9 @@
     $orderStatus    = array('<span class="text-danger font-weight-bold">ยกเลิก</span>', 
                         'รออนุมัติการสั่งซื้อ', 
                         'อนุมัติการสั่งซื้อ',
-                        'กำลังเตรียมส่งสินค้า',
-                        'อนุมัติจำนวนสินค้า',
+                        'กำลังเตรียมสินค้า',
                         'ส่งสินค้า',
-                        'ชำระเงินเรียบร้อย'
+                        '<span class="text-success font-weight-bold">ชำระเงินเรียบร้อย</span>'
                     );
     $protocol       = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
     $domain         = $protocol.$_SERVER['HTTP_HOST']."/project01";

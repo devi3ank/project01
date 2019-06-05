@@ -13,7 +13,7 @@
 ?>
 <div class="detail">
   <p class="title">ยืนยันการส่งสินค้า<p>
-  <form action="?app=order&action=order_confirm_buy&id=<?=$id?>&status=5" method="POST">
+  <form action="?app=order&action=order_confirm_buy&id=<?=$id?>&status=4" method="POST">
     <div class="form-group row">
       <label class="col-sm-2 col-form-label text-right">วันที่ส่งสินค้า : </label>
       <div class="col-sm-5">

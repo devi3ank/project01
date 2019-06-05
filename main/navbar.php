@@ -30,12 +30,15 @@
         <!-- <li class="<?php if($action == 'manage_stock' || $action == 'manage_stock_sale'){echo "active";}?>">
             <a href="?app=stock&action=manage_stock"><i class="fas fa-angle-double-right"></i> จัดการข้อมูลสินค้าในคลัง</a>
         </li> -->
+        <li class="<?php if($action == 'list_buy'){echo "active";}?>">
+            <a href="?app=orderbuy&action=list_buy"><i class="fas fa-angle-double-right"></i> จัดการข้อมูลรับซื้อสินค้า</a>
+        </li>
         <li class="<?php if($action == 'order_list_advance_admin'){echo "active";}?>">
             <a href="?app=order&action=order_list_advance_admin"><i class="fas fa-angle-double-right"></i> จัดการข้อมูลการสั่งซื้อสินค้า</a>
         </li>
-        <!-- <li class="<?php if($action == 'stock'){echo "active";}?>">
+        <li class="<?php if($action == 'stock'){echo "active";}?>">
             <a href="?app=datatransfer&action=stock"><i class="fas fa-angle-double-right"></i> ตรวจสอบสินค้าในคลัง</a>
-        </li> -->
+        </li>
         <li class="<?php if($action == 'finance'){echo "active";}?>">
             <a href="?app=datatransfer&action=finance"><i class="fas fa-angle-double-right"></i> ตรวจสอบข้อมูลการเงิน</a>
         </li>
@@ -80,11 +83,8 @@
             <a href="?app=datatransfer&action=transfer"><i class="fas fa-angle-double-right"></i> ตรวจสอบข้อมูลการส่งสินค้า</a>
         </li>
     <?php } elseif($_SESSION['user_type'] == 3) { ?>
-        <li class="<?php if($action == 'order_list'){echo "active";}?>">
-            <a href="?app=order&action=order_list"><i class="fas fa-angle-double-right"></i> สั่งซื้อสินค้า</a>
-        </li>
         <li class="<?php if($action == 'order_list_advance' || $action == 'order_buy2'){echo "active";}?>">
-            <a href="?app=order&action=order_list_advance"><i class="fas fa-angle-double-right"></i> สั่งซื้อสินค้าแบบล่วงหน้า</a>
+            <a href="?app=order&action=order_list_advance"><i class="fas fa-angle-double-right"></i> สั่งซื้อสินค้า</a>
         </li>
         <li class="<?php if($action == 'document'){echo "active";}?>">
             <a href="?app=documents&action=document"><i class="fas fa-angle-double-right"></i> เอกสารข้อมูลต่าง ๆ</a>

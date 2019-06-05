@@ -5,15 +5,13 @@
 
     $result = select_db("
         SELECT
-            order_tb.*,
-            store_tb.*,
-            products_tb.*
+            *
         FROM
-            order_tb
-        INNER JOIN store_tb ON order_tb.store_buy_id = store_tb.store_id
-        INNER JOIN products_tb ON order_tb.products_id = products_tb.products_id
+            order_buy_tb
+        INNER JOIN store_tb ON order_buy_tb.store_id = store_tb.store_id
+        INNER JOIN products_tb ON order_buy_tb.products_id = products_tb.products_id
         WHERE
-            order_tb.order_id = '$id'
+            order_buy_tb.ob_id = '$id'
     ");
 
     $data = $result->fetch_assoc();
@@ -36,8 +34,8 @@
     $html .= '<div style="">ออกใช้ ณ สาขา: สำนักงานใหญ่ โทร. 052-000-666</div>';
     $html .= '<div style="">ผู้ขาย : '.$data['store_name'].'</div>';
     $html .= '<div style="">'.$data['store_address'].'</div>';
-    $html .= '<table style="width:100%;"><tr><td style="width:70%;">โทร. '.$data['store_phone'].'</td><td>วันที่: '.date_format(date_create($data['order_date_buy']),"d/m/Y").'</td></tr></table>';
-    $html .= '<table style="width:100%;"><tr><td style="width:70%;">รหัสลูกค้า: '.$data['store_id'].'</td><td>เลขที่: '.sprintf("%05d", $data['order_id']).'</td></tr></table>';
+    $html .= '<table style="width:100%;"><tr><td style="width:70%;">โทร. '.$data['store_phone'].'</td><td>วันที่: '.date_format(date_create($data['ob_fitdate']),"d/m/Y").'</td></tr></table>';
+    $html .= '<table style="width:100%;"><tr><td style="width:70%;">รหัสลูกค้า: '.$data['store_id'].'</td><td>เลขที่: '.sprintf("%05d", $data['ob_id']).'</td></tr></table>';
     $html .= '
         <table style="width:100%; border-collapse: collapse;">
             <tr>
@@ -53,10 +51,10 @@
                 <td style="text-align:center;">1</td>
                 <td style="text-align:center;">'.$data['products_code'].'</td>
                 <td style="padding-left: 5px;">'.$data['products_name'].'</td>
-                <td style="text-align:right;">'.$data['order_weight'].'</td>
+                <td style="text-align:right;">'.$data['ob_weight'].'</td>
                 <td style="text-align:center;">กก.</td>
-                <td style="text-align:right;">'.$data['order_price_buy'].'</td>
-                <td style="text-align:right;">'.number_format($data['order_weight']*$data['order_price_buy'],2).'</td>
+                <td style="text-align:right;">'.$data['ob_price'].'</td>
+                <td style="text-align:right;">'.number_format($data['ob_weight']*$data['ob_price'],2).'</td>
             </tr>
             <tr>
                 <td style="height: 16px;" colspan="7"></td>
@@ -135,9 +133,9 @@
     $html .= '
         <table style="width:100%; border-collapse: collapse;">
             <tr>
-                <th style="width:60%; border: 1px solid black;">('.convert($data['order_weight']*$data['order_price_buy']).')</th>
+                <th style="width:60%; border: 1px solid black;">('.convert($data['ob_weight']*$data['ob_price']).')</th>
                 <th style="width:20%; border: 1px solid black;">ยอดรวมสุทธิ</th>
-                <th style="width:20%; border: 1px solid black; text-align:right;">'.number_format($data['order_weight']*$data['order_price_buy'],2).'</th>
+                <th style="width:20%; border: 1px solid black; text-align:right;">'.number_format($data['ob_weight']*$data['ob_price'],2).'</th>
             </tr>
         </table>
     ';

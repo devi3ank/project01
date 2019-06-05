@@ -44,7 +44,7 @@
                 <td class="text-center"><?=$orderStatus[$row['order_status']]?></td>
                 <td class="text-center">
                     <?php if ($row['order_status'] == 1) {?>
-                    <a href="?app=order&action=order_cancel_advance&id=<?=$row['order_id']?>" onclick="return confirm('ยืนยันการยกเลิก')" class="btn btn-danger btn-sm" title="ยกเลิกการสั่งซื้อ"><i class="fas fa-window-close"></i></a>
+                        <a href="?app=order&action=order_cancel_advance&id=<?=$row['order_id']?>" onclick="return confirm('ยืนยันการยกเลิก')" class="btn btn-danger btn-sm" title="ยกเลิกการสั่งซื้อ"><i class="fas fa-window-close"></i></a>
                     <?php } ?>
                 </td>
             </tr>

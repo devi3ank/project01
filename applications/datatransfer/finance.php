@@ -14,10 +14,10 @@ $result = select_db("
         store_tb.store_name
     FROM
         order_tb
-    INNER JOIN store_tb ON order_tb.store_buy_id = store_tb.store_id
+    INNER JOIN store_tb ON order_tb.store_id = store_tb.store_id
     WHERE
         order_tb.order_status  >= '2' AND
-        order_tb.order_fitdate BETWEEN '$dateStart 00:00:00' AND '$dateEnd 23:59:59'
+        order_tb.order_fitdate BETWEEN '$dateStart 00:00:00' AND '$dateEnd 23:59:59' 
     ORDER BY 
         order_tb.order_fitdate ASC
 ");
@@ -26,13 +26,13 @@ $resultChartsBuy = select_db("
     SELECT 
         store_tb.store_id,
         store_tb.store_name,
-        SUM(order_weight * order_price_buy) AS buy
+        SUM(ob_weight * ob_price) AS buy
     FROM 
-        order_tb 
-    INNER JOIN store_tb ON order_tb.store_buy_id = store_tb.store_id 
+        order_buy_tb 
+    INNER JOIN store_tb ON order_buy_tb.store_id = store_tb.store_id 
     WHERE
-        order_tb.order_status  >= '3' AND
-        order_tb.order_fitdate BETWEEN '$dateStart 00:00:00' AND '$dateEnd 23:59:59'
+        order_buy_tb.ob_status  = '2' AND
+        order_buy_tb.ob_fitdate BETWEEN '$dateStart 00:00:00' AND '$dateEnd 23:59:59'
     GROUP BY
         store_tb.store_name
 ");

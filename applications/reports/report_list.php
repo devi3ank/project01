@@ -12,16 +12,19 @@
     if ($typeReport == 1) {
         $sql = "
             SELECT
-                order_tb.*,
+                order_buy_tb.ob_id as order_id,
+                order_buy_tb.ob_price as order_price_buy,
+                order_buy_tb.ob_weight as order_weight,
+                order_buy_tb.ob_fitdate as order_fitdate,
                 store_tb.store_name
             FROM
-                order_tb
-            INNER JOIN store_tb ON order_tb.store_buy_id = store_tb.store_id
+                order_buy_tb
+            INNER JOIN store_tb ON order_buy_tb.store_id = store_tb.store_id
             WHERE
-                order_tb.order_status >= 3 AND
-                order_tb.order_date_buy BETWEEN '$dateStart 00:00:00' AND '$dateEnd 23:59:59'
+                order_buy_tb.ob_status = 2 AND
+                order_buy_tb.ob_fitdate BETWEEN '$dateStart 00:00:00' AND '$dateEnd 23:59:59'
             ORDER BY 
-                order_tb.order_id ASC
+                order_buy_tb.ob_fitdate ASC
         ";
     } elseif($typeReport == 2) {
         $sql = "
@@ -80,9 +83,9 @@
         <thead class="thead-dark">
             <tr>
                 <th class="text-center" style="width: 100px;">lot</th>
-                <th class="text-center" style="width: 150px;">วันที่สั่งซื้อสินค้า</th>
+                <th class="text-center" style="width: 150px;">วันที่</th>
                 <th class="text-center">ซื้อสินค้ากับ</th>
-                <th class="text-center" style="width: 150px;">ราคาซื้อ</th>
+                <th class="text-center" style="width: 150px;">ราคา</th>
                 <th class="text-center" style="width: 150px;">น้ำหนัก</th>
                 <th class="text-center" style="width: 150px;">ยอดจริง</th>
                 <th class="text-center" style="width: 50px;"></th>
@@ -96,7 +99,7 @@
         ?>
             <tr>
                 <td class="text-center"><?=$row['order_id']?></td>
-                <td class="text-center"><?=date_format(date_create($row['order_date_buy']),"d/m/Y")?></td>
+                <td class="text-center"><?=date_format(date_create($row['order_fitdate']),"d/m/Y")?></td>
                 <td><?=$row['store_name']?></td>
                 <td class="text-right"><?=number_format($row['order_price_buy'],2)?></td>
                 <td class="text-right"><?=number_format($row['order_weight'],2)?></td>

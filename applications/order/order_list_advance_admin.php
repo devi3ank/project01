@@ -44,10 +44,10 @@
                     <a href="?app=order&action=order_confirm_buy&id=<?=$row['order_id']?>&status=2" class="btn btn-success btn-sm" title="อนุมัติการสั่งซื้อ" onclick="return confirm('ยืนยันการอนุมัติการสั่งซื้อ')"><i class="fas fa-clipboard-check"></i></a>
                   <?php } elseif($row['order_status'] == '2') { ?>
                     <a href="?app=order&action=order_advance_confirm&id=<?=$row['order_id']?>" class="btn btn-info btn-sm" title="กำลังเตรียมสินค้า"><i class="fas fa-store"></i></a>
-                  <?php } elseif($row['order_status'] == '4') { ?>
+                  <?php } elseif($row['order_status'] == '3') { ?>
                     <a href="?app=order&action=order_advance_transfer&id=<?=$row['order_id']?>" class="btn btn-warning btn-sm" title="ส่งสินค้า"><i class="fas fa-dolly-flatbed"></i></a>
-                  <?php } elseif($row['order_status'] == '5') { ?>
-                    <a href="?app=order&action=order_confirm_buy&id=<?=$row['order_id']?>&status=6" class="btn btn-success btn-sm" title="ยืนยันการชำระเงิน" onclick="return confirm('ยืนยันการชำระเงิน')"><i class="fas fa-cash-register"></i></a>
+                  <?php } elseif($row['order_status'] == '4') { ?>
+                    <a href="?app=order&action=order_confirm_buy&id=<?=$row['order_id']?>&status=5" class="btn btn-success btn-sm" title="ยืนยันการชำระเงิน" onclick="return confirm('ยืนยันการชำระเงิน')"><i class="fas fa-cash-register"></i></a>
                   <?php } ?>
                 </td>
             </tr>

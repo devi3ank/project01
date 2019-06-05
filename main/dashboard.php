@@ -2,6 +2,7 @@
     $app    = (!empty($_GET['app']))?'/'.$_GET['app'].'/':'/';
     $action = (!empty($_GET['action']))?$_GET['action']:'main';
     include './main/navbar.php';
+    
 ?>
 <div class="content">
 <?php 

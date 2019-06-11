@@ -5,7 +5,7 @@
     $data['order_status'] = $status_buy;
 
     if ($status_buy == 3) {
-      $data['order_confirm_buy'] = $_POST['order_confirm_buy'];
+      $data['order_price_buy'] = $_POST['order_price_buy'];
       $data['order_price_sale'] = $_POST['order_price_sale'];
       $resultOrder = select_db("
         SELECT
